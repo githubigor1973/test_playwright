@@ -1,0 +1,4 @@
+{
+  "playwright.testExplorer.selectedProjects": ["chromium", "firefox", "webkit"],
+  "testing.defaultProfile": "playwright-run"
+}
