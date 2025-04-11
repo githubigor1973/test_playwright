@@ -49,4 +49,5 @@ test('test', async ({ page }) => {
   await page.waitForTimeout(3000);
   await logAndScreenshot(page, screenshotDir, '3-accounts', 'Accounts loaded');  
     await page.getByRole('button', { name: 'New' }).click();  
+    console.log('Test is done');
 });
