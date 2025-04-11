@@ -32,6 +32,7 @@ test('test', async ({ page }) => {
   // usage:
   await getByConfiguredRole(page, config.roles.loginButton).click();   */
   await page.getByRole('button', { name: config.loginButtonName }).click();
+  
   const launcher = page.getByRole('button', { name: 'App Launcher' })
   await expect(launcher).toBeVisible();
   await launcher.click();

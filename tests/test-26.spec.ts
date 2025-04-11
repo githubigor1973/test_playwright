@@ -10,4 +10,8 @@ test('🔐 Login to Salesforce Contacts', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Password' }).fill(config.password);
 
   await page.getByRole('button', { name: 'Log In' }).click();
+  await page.waitForTimeout(1000);
+
+  await page.getByRole('link', { name: 'Salesforce Mobile App' }).click();
+  
 });
