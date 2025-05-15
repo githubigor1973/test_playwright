@@ -1,0 +1,95 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Login via API and skip MFA using cookie injection
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-49.spec.ts:18:5
+
+# Error details
+
+```
+Error: expect(received).toBeTruthy()
+
+Received: false
+    at /Users/pejin/Documents/Playwright QA/tests/test-49.spec.ts:58:28
+```
+
+# Test source
+
+```ts
+   1 |  // NupMOalbonJzvgl51nSnm
+   2 |  
+   3 | /*  import { test, expect } from '@playwright/test';
+   4 |
+   5 | test('test', async ({ page }) => {
+   6 |
+   7 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+   8 | await page.getByRole('textbox', { name: 'Username' }).fill('ipejin@brexus.com');
+   9 | await page.getByRole('textbox', { name: 'Password' }).fill('Demo123456!');
+  10 | await page.getByRole('button', { name: 'Login' }).click();
+  11 |
+  12 | }); 
+  13 |  */
+  14 |
+  15 |
+  16 | import { test, expect, request as playwrightRequest, chromium } from '@playwright/test';
+  17 |
+  18 | test('Login via API and skip MFA using cookie injection', async ({ browser }) => {
+  19 |   const baseUrl = 'https://qa-voya-platform.joinansel.com';
+  20 |   const username = 'ipejin@brexus.com';
+  21 |   const password = 'NupMOalbonJzvgl51nSnm!';
+  22 |   const credentialTypeCode = 'SUPPORT';
+  23 |
+  24 |   // 1. Create an isolated API request context
+  25 |   const apiContext = await playwrightRequest.newContext();
+  26 |
+  27 |   // 2. Log in via API
+  28 |   const loginResponse = await apiContext.post(`${baseUrl}/support/api/v1/auth/login`, {
+  29 |     data: {
+  30 |       username,
+  31 |       password,
+  32 |     },
+  33 |     headers: {
+  34 |       'Content-Type': 'application/json',
+  35 |     }
+  36 |   });
+  37 |
+  38 |   expect(loginResponse.ok()).toBeTruthy();
+  39 |   const loginCookies = await apiContext.storageState();
+  40 |
+  41 |   // Optional: debug output
+  42 |   console.log('Login response status:', loginResponse.status());
+  43 |   console.log('Login cookies:', loginCookies.cookies);
+  44 |
+  45 |   // 3. Call the allowSkip endpoint using the authenticated session
+  46 |   const mfaResponse = await apiContext.post(`${baseUrl}/api/support/v1/tools/mfa/allowSkip`, {
+  47 |     data: {
+  48 |       username,
+  49 |       credentialTypeCode,
+  50 |     },
+  51 |     headers: {
+  52 |       'Content-Type': 'application/json',
+  53 |     }
+  54 |   });
+  55 |
+  56 |   const mfaBody = await mfaResponse.text();
+  57 |   console.log('MFA skip response:', mfaResponse.status(), mfaBody);
+> 58 |   expect(mfaResponse.ok()).toBeTruthy();
+     |                            ^ Error: expect(received).toBeTruthy()
+  59 |
+  60 |   // 4. Launch a browser context with the authenticated storage state
+  61 |   const context = await browser.newContext({ storageState: loginCookies });
+  62 |   const page = await context.newPage();
+  63 |
+  64 |   // 5. Navigate directly to the app (should be logged in already)
+  65 |   await page.goto(`${baseUrl}/support/dashboard`);
+  66 |
+  67 |   // 6. Confirm we're logged in
+  68 |   await expect(page).toHaveURL(/.*dashboard.*/);
+  69 |   await page.screenshot({ path: 'logged-in.png' });
+  70 | });
+```

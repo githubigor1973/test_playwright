@@ -1,0 +1,178 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Employer account creation and signing
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-43.spec.ts:78:5
+
+# Error details
+
+```
+Error: locator.fill: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('input[name="SET_TAX_ID"]')
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-43.spec.ts:101:50
+```
+
+# Test source
+
+```ts
+   1 | /* import { test, expect } from '@playwright/test';
+   2 | import { faker } from '@faker-js/faker';
+   3 |
+   4 | test('test', async ({ page }) => {
+   5 |       await page.goto('https://qa-ansel-platform.joinansel.com/employer/setPassword/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblR5cGUiOiJFbXBsb3llciIsImludml0ZUlkIjo1ODM3LCJlbXBsb3llcklkIjpudWxsLCJlYVVzZXJJZCI6bnVsbH0.xRFk0BGvljhW4xfoRCl3q5avab5FUty0h-nhor_8tRE');
+   6 |
+   7 |   await page.locator('input[name="password"]').fill('Demo123456');
+   8 |   await page.locator('input[name="confirmPassword"]').fill('Demo123456');
+   9 |
+   10 |   // ✅ Check the "agree to terms" checkbox properly
+   11 |   await page.locator('input[name="agreeToTerms"]').check({ force: true });
+   12 |
+   13 |   await page.getByRole('button', { name: 'Continue' }).click();  
+   14 |    await page.waitForTimeout(2000);
+   15 |   
+   16 |
+   17 |  
+   18 |    await page.goto('https://qa-ansel-platform.joinansel.com/employer/login');
+   19 |
+   20 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill('igor.pejin+sbs67zpy@joinansel.com');
+   21 |   await page.locator('input[name="password"]').fill('Demo123456');
+   22 |   await page.getByRole('button', { name: 'Login' }).click();
+   23 |
+   24 |   const fein = `${faker.number.int({ min: 10, max: 99 })}-${faker.number.int({ min: 1000000, max: 9999999 })}`;
+   25 |   const street = faker.location.streetAddress();
+   26 |   const city = faker.location.city();
+   27 |   const zip = faker.location.zipCode('#####');
+   28 |
+   29 | // ✅ Fill random company info
+   30 | await page.locator('input[name="SET_TAX_ID"]').fill(fein);
+   31 | await page.locator('input[name="SET_ADDRESS"]').fill(street);
+   32 | await page.locator('input[name="SET_CITY"]').fill(city);
+   33 | await page.getByRole('textbox', { name: 'XXXXX', exact: true }).fill(zip);
+   34 |
+   35 | await page.getByRole('button', { name: 'Next step' }).click();
+   36 |
+   37 | // ✅ Additional eligibility config
+   38 | await page.getByRole('listbox').filter({ hasText: 'Date of eligibility lossLast' }).click();
+   39 | await page.getByRole('option', { name: 'Date of eligibility loss' }).locator('span').click();
+   40 | await page.getByText('Yes, only unmarried children').click();
+   41 | await page.getByText('Yes').nth(1).click();
+   42 | await page.getByText('No').nth(2).click();
+   43 | await page.getByRole('button', { name: 'Next step' }).click();
+   44 |
+   45 | // ✅ Sign
+   46 | await page.getByRole('button', { name: 'Sign', exact: true }).click();
+   47 | await page.getByText('By clicking Continue to sign').click();
+   48 | await page.getByRole('button', { name: 'Continue to sign' }).click();  
+   49 |  
+   50 |
+   51 | await page.goto('https://qa-ansel-platform.joinansel.com/employer/accountCreation/docusign');
+   52 |
+   53 | await page.waitForTimeout(4000);
+   54 |
+   55 | await page.getByRole('textbox', { name: 'Enter your email' }).fill('igor.pejin+sbs67zpy@joinansel.com');
+   56 |   await page.locator('input[name="password"]').fill('Demo123456');
+   57 |   await page.getByRole('button', { name: 'Login' }).click();
+   58 |
+   59 | const frame = await page.frameLocator('iframe[title="ds"]');
+   60 |
+   61 | await page.locator('iframe[title="ds"]').contentFrame().locator('span').filter({ hasText: 'I agree to use electronic' }).first().click();
+   62 | await frame.getByRole('button', { name: 'Continue' }).click();
+   63 | await frame.locator('#navigate-btn').click();
+   64 |
+   65 | await frame.locator('iframe[title="ds"]').contentFrame().locator('label').first().click();
+   66 | await frame.locator('iframe[title="ds"]').contentFrame().locator('#tab-form-element-02d71bb5-8a14-444e-a973-43c635edceb2').click();
+   67 | await frame.getByRole('button', { name: 'Adopt and Sign' }).click();
+   68 |
+   69 | await frame.locator('iframe[title="ds"]').contentFrame().locator('#tab-form-element-4488a590-e114-44c5-813a-d5cea0977de4').click();
+   70 | //await frame.locator('iframe[title="ds"]').contentFrame().locator('#navigate-btn').click();
+   71 |
+   72 | await frame.locator('#action-bar-btn-finish').click();
+   73 | }); */
+   74 |
+   75 | import { test, expect } from '@playwright/test';
+   76 | import { faker } from '@faker-js/faker';
+   77 |
+   78 | test('Employer account creation and signing', async ({ page }) => {
+   79 |   // Step 1: Set Password
+   80 |        await page.goto('https://qa-ansel-platform.joinansel.com/employer/setPassword/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblR5cGUiOiJFbXBsb3llciIsImludml0ZUlkIjo1ODQzLCJlbXBsb3llcklkIjpudWxsLCJlYVVzZXJJZCI6bnVsbH0.DxXpX44SdjDewREfwqLRb4sb6_uab3OoCAu8HjOpQx8');
+   81 |
+   82 |   await page.locator('input[name="password"]').fill('Demo123456');
+   83 |   await page.locator('input[name="confirmPassword"]').fill('Demo123456');
+   84 |   await page.locator('input[name="agreeToTerms"]').check({ force: true });
+   85 |   await page.getByRole('button', { name: 'Continue' }).click();
+   86 |
+   87 |   await page.waitForTimeout(2000);
+   88 |
+   89 |   // Step 2: Login
+   90 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/login');
+   91 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill('igor.pejin+bbggfojt@joinansel.com');
+   92 |   await page.locator('input[name="password"]').fill('Demo123456');
+   93 |   await page.getByRole('button', { name: 'Login' }).click({ force: true });
+   94 |
+   95 |   // Step 3: Fill Company Info
+   96 |   const fein = `${faker.number.int({ min: 10, max: 99 })}-${faker.number.int({ min: 1000000, max: 9999999 })}`;
+   97 |   const street = faker.location.streetAddress();
+   98 |   const city = faker.location.city();
+   99 |   const zip = faker.location.zipCode('#####');
+  100 |
+> 101 |   await page.locator('input[name="SET_TAX_ID"]').fill(fein);
+      |                                                  ^ Error: locator.fill: Target page, context or browser has been closed
+  102 |   await page.locator('input[name="SET_ADDRESS"]').fill(street);
+  103 |   await page.locator('input[name="SET_CITY"]').fill(city);
+  104 |   await page.getByRole('textbox', { name: 'XXXXX', exact: true }).fill(zip);
+  105 |   await page.getByRole('button', { name: 'Next step' }).click();
+  106 |
+  107 |   // Step 4: Additional Eligibility Config
+  108 |   await page.getByRole('listbox').filter({ hasText: 'Date of eligibility lossLast' }).click();
+  109 |   await page.getByRole('option', { name: 'Date of eligibility loss' }).locator('span').click();
+  110 |   await page.getByText('Yes, only unmarried children').click();
+  111 |   await page.getByText('Yes').nth(1).click();
+  112 |   await page.getByText('No').nth(2).click();
+  113 |   await page.getByRole('button', { name: 'Next step' }).click();
+  114 |
+  115 |   // Step 5: Sign
+  116 |   await page.getByRole('button', { name: 'Sign', exact: true }).click();
+  117 |   await page.getByText('By clicking Continue to sign').click();
+  118 |   await page.getByRole('button', { name: 'Continue to sign' }).click();  
+  119 |   
+  120 |
+  121 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/accountCreation/docusign');
+  122 |
+  123 |   // Step 6: Login again for DocuSign
+  124 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill('igor.pejin+bbggfojt@joinansel.com');
+  125 |   await page.locator('input[name="password"]').fill('Demo123456');
+  126 |   await page.getByRole('button', { name: 'Login' }).click();
+  127 |
+  128 |   // Step 7: DocuSign Signing Flow
+  129 |   const docusignFrame = page.frameLocator('iframe[title="ds"]');
+  130 |
+  131 |   await docusignFrame.getByText('I agree to use electronic').first().click();
+  132 |   await docusignFrame.getByRole('button', { name: 'Continue' }).click();
+  133 |   await docusignFrame.locator('#navigate-btn').click();
+  134 |
+  135 |   // Click label to focus
+  136 | await docusignFrame.locator('label').first().click();
+  137 |
+  138 | // Wait for signature buttons to be visible
+  139 | const signButtons = docusignFrame.getByRole('button', { name: /Required\s*-\s*Sign Here/i });
+  140 |
+  141 | // Click the first signature field
+  142 | await signButtons.nth(0).click();
+  143 |
+  144 | // Click "Adopt and Sign"
+  145 | await docusignFrame.getByRole('button', { name: 'Adopt and Sign' }).click();
+  146 |
+  147 | // Click the second signature field (after it appears)
+  148 | await page.locator('iframe[title="ds"]').contentFrame().getByRole('button', { name: 'Required - Sign Here' }).click();
+  149 |
+  150 | // Finish signing
+  151 | await docusignFrame.locator('#action-bar-btn-finish').click();
+  152 | });
+```

@@ -1,0 +1,42 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:3:5
+
+# Error details
+
+```
+Error: locator.type: Test ended.
+Call log:
+  - waiting for getByRole('textbox', { name: 'Enter your email' })
+    - locator resolved to <input value="" type="text" name="email" placeholder="Enter your email"/>
+  - elementHandle.type("igor.pejin+ba280201037@joinansel.com")
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:5:65
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |   await page.goto('https://qa-ansel-platform.joinansel.com/member/login');
+>  5 |   await page.getByRole('textbox', { name: 'Enter your email' }).type('igor.pejin+ba280201037@joinansel.com', { delay: 30 });
+     |                                                                 ^ Error: locator.type: Test ended.
+   6 |  //await page.type('input[placeholder="Enter your email"]', 'igor.pejin+ba280201037@joinansel.com', {delay: 100 });
+   7 |   await page.locator('input[name="password"]').type('Demo123456', { delay: 30 });
+   8 |   expect(await page.getByRole('heading', { name: 'Sign in to your Member Portal' })).toBeVisible();
+   9 |   await expect(page.locator('.memberLoginContentText')).toHaveText('Enter your details below to access to Ansel');
+  10 |   await page.locator('a', { hasText: 'Forgot password' }).click();
+  11 |   expect(await page.getByText('Not yet registered? Create an')).toBeVisible();
+  12 |
+  13 |     //await page.getByRole('button', { name: 'Sign in' }).click();
+  14 | });
+```

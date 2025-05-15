@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745574373306.csv
+📄 CSV created at: generated/roster-1745574373306.csv
+✅ Clicked quote: Jakubowski - Hills
+✅ Clicked quote row for: Jakubowski - Hills
+✅ Proposal filled successfully

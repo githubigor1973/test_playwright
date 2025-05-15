@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745826849931.csv
+📄 CSV created at: generated/roster-1745826849931.csv
+✅ Clicked quote: Hilpert, Willms and Pacocha
+✅ Clicked quote row for: Hilpert, Willms and Pacocha
+✅ Proposal filled successfully

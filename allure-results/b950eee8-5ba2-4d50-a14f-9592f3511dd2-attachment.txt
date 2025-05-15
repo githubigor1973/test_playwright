@@ -1,0 +1,4 @@
+✅ CSV generated: generated/roster-1745993570966.csv
+📄 CSV created at: generated/roster-1745993570966.csv
+✅ Clicked quote: Cummerata LLC
+✅ Clicked quote row for: Cummerata LLC

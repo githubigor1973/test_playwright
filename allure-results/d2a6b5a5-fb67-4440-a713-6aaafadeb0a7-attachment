@@ -1,0 +1,88 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:3:5
+
+# Error details
+
+```
+Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for locator('input[name="password"]')
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:17:47
+```
+
+# Test source
+
+```ts
+   1 |   import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |
+   5 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+   6 | await page.getByRole('textbox', { name: 'Username' }).fill('ipejin@brexus.com');
+   7 | await page.getByRole('textbox', { name: 'Password' }).fill('NupMOalbonJzvgl51nSnm!');
+   8 | await page.getByRole('button', { name: 'Login' }).click();
+   9 | //await page.getByRole('textbox', { name: '-digit authentication code' }).fill('123456');
+  10 | //await page.getByRole('button', { name: 'Submit' }).click();
+  11 |  await page.getByRole('link', { name: 'Email List' }).click();
+  12 |  await page.getByRole('textbox', { name: 'email' }).fill('igor.pejin+atqmahen@joinansel.com');
+  13 |  await page.getByRole('button', { name: 'Search' }).click();
+  14 |  await page.getByRole('link', { name: '1264275' }).click();
+  15 |  for (let i = 0; i < 10; i++) await page.mouse.wheel(0, 300);
+  16 |  await page.getByRole('button', { name: 'Create account' }).click();
+> 17 |  await page.locator('input[name="password"]').click();
+     |                                               ^ Error: locator.click: Test timeout of 30000ms exceeded.
+  18 |  await page.locator('input[name="password"]').fill('Demo123456');
+  19 |  await page.locator('input[name="confirmPassword"]').click();
+  20 |  await page.locator('input[name="confirmPassword"]').fill('Demo123456');
+  21 |  await page.getByText('I accept the Terms and Privacy').click({ force: true });
+  22 |
+  23 | }); 
+  24 |  
+  25 |
+  26 |
+  27 | /* import { test, expect, request as playwrightRequest } from '@playwright/test';
+  28 |
+  29 | test('Call allowSkip with token, then re-login to verify MFA skip', async ({ page, request }) => {
+  30 |   // 🔐 STEP 1: Paste your valid authToken (after successful MFA login)
+  31 |   const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwNDMsIm1pbnV0ZXNUaW1lb3V0Ijo2MCwiY3JlYXRpb25UaW1lIjoiMjAyNS0wNC0yOVQyMDo1OTozNC41NDE2MTI4NzNaIn0.E-MsvjaTGTsj6VankkKjhK3hdd_8GROhRNATMG8WDwU'; // <-- your full token here
+  32 |
+  33 |   const username = 'ipejin@brexus.com';
+  34 |   const password = 'NupMOalbonJzvgl51nSnm!';
+  35 |   const credentialTypeCode = 'SUPPORT';
+  36 |
+  37 |   // STEP 2: Call allowSkip using authToken
+  38 |   const apiContext = await playwrightRequest.newContext({
+  39 |     baseURL: 'https://qa-ansel-platform.joinansel.com',
+  40 |     extraHTTPHeaders: {
+  41 |       'Content-Type': 'application/json',
+  42 |       'authToken': authToken
+  43 |     }
+  44 |   });
+  45 |
+  46 |   const response = await apiContext.post('/support/api/v1/tools/mfa/allowSkip', {
+  47 |     data: { username, credentialTypeCode }
+  48 |   });
+  49 |
+  50 |   const result = await response.text();
+  51 |   console.log('✅ allowSkip response:', response.status(), result);
+  52 |   expect(response.ok()).toBeTruthy();
+  53 |
+  54 |   // STEP 3: Try logging in again via browser (should skip MFA)
+  55 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+  56 |   await page.getByRole('textbox', { name: 'Username' }).fill(username);
+  57 |   await page.getByRole('textbox', { name: 'Password' }).fill(password);
+  58 |   await page.getByRole('button', { name: 'Login' }).click();
+  59 |
+  60 |   console.log('🧪 Login submitted — check if MFA is skipped.');
+  61 |   await page.pause(); // 👈 keeps browser open for inspection
+  62 | }); */
+```

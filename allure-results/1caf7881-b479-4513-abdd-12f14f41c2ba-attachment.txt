@@ -1,0 +1,82 @@
+✅ API response is correct! {
+  id: 117234,
+  url: 'https://jobicy.com/jobs/117234-account-manager-7',
+  jobSlug: '117234-account-manager-7',
+  jobTitle: 'Account Manager',
+  companyName: 'Scorpion',
+  companyLogo: 'https://jobicy.com/data/server-nyc0409/galaxy/mercury/2021/11/5d0f5219d1a5557d70758202f92e0076.png',
+  jobIndustry: [ 'Sales' ],
+  jobType: [ 'full-time' ],
+  jobGeo: 'USA',
+  jobLevel: 'Any',
+  jobExcerpt: 'As an Account Manager, you will be the primary strategic partner for our clients, building and nurturing strong relationships while serving as their main point of contact. You will oversee the execution of digital marketing campaigns that align with client objectives, ensuring seamless collaboration between internal teams and external stakeholders. To be successful in this&amp;#8230;',
+  jobDescription: '<p>As an Account Manager, you will be the primary strategic partner for our clients, building and nurturing strong relationships while serving as their main point of contact. You will oversee the execution of digital marketing campaigns that align with client objectives, ensuring seamless collaboration between internal teams and external stakeholders. To be successful in this role, you must have a deep understanding of Scorpion’s products, systems, and platforms, as well as a strong grasp of digital marketing strategies across SEO, paid advertising, social media, and more. Your ability to translate client goals into actionable strategies will position you as a trusted advisor, driving long-term success and measurable results.</p>\n' +
+    '<h2>What your success will look like</h2>\n' +
+    '<ul>\n' +
+    '<li>Client Relationship Management: Develop and maintain strong, long-lasting client relationships by understanding their needs, objectives, and business goals.</li>\n' +
+    '<li>Account Strategy: Develop and implement comprehensive digital marketing strategies in collaboration with our internal teams, encompassing SEO, paid advertising, social media management, chat, and content marketing, to achieve client objectives.</li>\n' +
+    '<li>Account Reviews: Monitor and analyze campaign performance, providing insights and recommendations for improvements to clients, covering SEO, PPC, and social media KPIs.</li>\n' +
+    '<li>New Business Development: Identify opportunities for upselling and expanding our services within existing client accounts.</li>\n' +
+    '<li>Team Collaboration: Work closely with internal teams, including the Director of Marketing, SEO specialists, paid advertising experts, social media managers, and content writers, to ensure client success.</li>\n' +
+    '<li>Budget Management: Manage client budgets, ensuring efficient allocation of resources to achieve campaign objectives and return on investment.</li>\n' +
+    '</ul>\n' +
+    '<h2>Who you are and what you bring</h2>\n' +
+    '<ul>\n' +
+    '<li>Education: Bachelor&#8217;s degree in Marketing, Advertising, Business, Communications, or a related field—or equivalent practical experience.</li>\n' +
+    '<li>Experience:\n' +
+    '<ul>\n' +
+    '<li>2+ year of professional experience in client-facing account management.</li>\n' +
+    '<li>Proven track record of upselling and growing client accounts.</li>\n' +
+    '<li>Proven ability to manage client relationships, understand their needs, and deliver results.</li>\n' +
+    '<li>Experience working with cross-functional teams to execute client strategies.</li>\n' +
+    '</ul>\n' +
+    '</li>\n' +
+    '<li>Skills\n' +
+    '<ul>\n' +
+    '<li>Understanding of digital marketing channels, strategies, and tactics, including SEO, social media, and paid advertising</li>\n' +
+    '<li>Excellent attention to detail, with a keen understanding of budget constraints and project management</li>\n' +
+    '<li>Exceptional communication and relationship-building skills to foster trust with clients.</li>\n' +
+    '<li>A proactive approach to problem-solving and managing client expectations.</li>\n' +
+    '<li>Ability to multitask, prioritize, and perform well under pressure.</li>\n' +
+    '<li>Eagerness to learn new tools, platforms, and industry best practices.</li>\n' +
+    '</ul>\n' +
+    '</li>\n' +
+    '</ul>\n' +
+    '<h2>Our Scorpion Values</h2>\n' +
+    '<p><strong>Winning Mindset:</strong>  When our clients win, we win.<br />\n' +
+    '<strong>Genuine Care:</strong>  We only succeed when we are truly invested in our clients and each other.<br />\n' +
+    '<strong>Unmatched Results:</strong>  We deliver more than expected–and then some–driving the best results and impacting lives.<br />\n' +
+    '<strong>Constant Improvement:</strong>  We believe there is always a better way. We learn we ask “What if?” we build and then do it again.<br />\n' +
+    '<strong>Unbeatable Teamwork:</strong>  We come from different backgrounds but have the same vision. We only get there by doing it together, as a team.</p>\n' +
+    '<h2>Our Benefits</h2>\n' +
+    '<p>We invest in our employees by offering them diverse benefits from best-in-class carriers. These benefits provide enough choice and flexibility to keep our employees and their families healthy and happy —  today and tomorrow.</p>\n' +
+    '<ul>\n' +
+    '<li>100% employer-paid medical, dental, and vision insurance</li>\n' +
+    '<li>Flexible paid time off, so you can rest, relax and recharge away from work</li>\n' +
+    '<li>Employee equity program</li>\n' +
+    '<li>Paid parental leave</li>\n' +
+    '<li>Paid cell phone and service</li>\n' +
+    '<li>Remote office allowance</li>\n' +
+    '<li>Professional development and development courses</li>\n' +
+    '<li>Regular manager check-ins to drive performance and career growth through Lattice</li>\n' +
+    '</ul>\n' +
+    '<h2>Compensation</h2>\n' +
+    '<p>We acknowledge that states have passed legislation promoting pay transparency.  As a national employer, Scorpion has made the decision to post our expected pay rate or pay range (as applicable) in all our job postings, regardless of geographic location.</p>\n' +
+    '<ul>\n' +
+    '<li>The base salary range is $60,000 (entry-level) &#8211; $80,000 (highly experienced), exclusive of fringe benefits. If you are hired at Scorpion, your final base salary compensation will be determined based on factors such as geographic location, skills, education, and/or experience. Additionally, we believe in the importance of pay equity and consider the internal equity of our current team members as a part of any final offer. Please keep in mind that the range mentioned above is the total salary range for the role. Hiring at the maximum of the range would not be typical in order to allow for future &amp; continued salary growth.</li>\n' +
+    '<li>The compensation package may also include incentive compensation opportunities in the form of discretionary bonuses or commissions.</li>\n' +
+    '</ul>\n' +
+    '<h2>Our Interview Process</h2>\n' +
+    '<p>We value your time and want to give you the best opportunity to showcase your skills. Here’s what to expect:</p>\n' +
+    '<ul>\n' +
+    '<li><strong>Initial Phone Screen:  </strong>30-minute conversation with a recruiter to learn more about you and share details about the role.</li>\n' +
+    '<li><strong>First Interview:  </strong>30-minute Zoom with the hiring manager to dive deeper into your experience and goals.</li>\n' +
+    '<li><strong>Second Interview:  </strong>45-minute Zoom with interview panel with key team members.</li>\n' +
+    '</ul>\n' +
+    '<p>Scorpion is an equal opportunity employer and considers applicants for all positions without regard to race, color, religion or belief, sex, age, national origin, citizenship status, marital status, military/veteran status, genetic information, sexual orientation, gender identity, or physical or mental disability. We believe in creating a dynamic work environment that values diversity and inclusion.</p>\n' +
+    '<p>Scorpion participates in the E-Verify program to confirm employment authorization of all newly hired employees. The E-Verify process is completed during new hire onboarding and completion of the Form I-9, Employment Eligibility Verification, at the start of employment. E-Verify is not used as a tool to pre-screen candidates. For more information on E-Verify, please visit www.uscis.gov.</p>',
+  pubDate: '2025-05-01 04:38:01',
+  annualSalaryMin: 60000,
+  annualSalaryMax: 80000,
+  salaryCurrency: 'USD'
+}

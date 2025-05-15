@@ -1,0 +1,59 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Initial login with MFA, then allowSkip
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-50.spec.ts:3:5
+
+# Error details
+
+```
+Error: locator.fill: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for getByRole('textbox', { name: 'Username' })
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-50.spec.ts:10:57
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Initial login with MFA, then allowSkip', async ({ page, request }) => {
+   4 |   const username = 'damianp+stdamvy@joinansel.com';
+   5 |   const password = 'Demo123456';
+   6 |   const credentialTypeCode = 'PARTNER';
+   7 |
+   8 |   // 1. Go to login page and log in manually
+   9 |   await page.goto('https://qa-voya-platform.joinansel.com/partner/login');
+> 10 |   await page.getByRole('textbox', { name: 'Username' }).fill(username);
+     |                                                         ^ Error: locator.fill: Test timeout of 30000ms exceeded.
+  11 |   await page.getByRole('textbox', { name: 'Password' }).fill(password);
+  12 |   await page.getByRole('button', { name: 'Login' }).click();
+  13 |
+  14 |   // 2. Wait for MFA input (let the user manually enter or intercept and handle it)
+  15 |   // Optionally, pause and fill it in manually
+  16 |   await page.pause();
+  17 |
+  18 |   // 3. After login + MFA, call allowSkip
+  19 |   const response = await request.post('https://qa-voya-platform.joinansel.com/partner/login/partner/api/v1/tools/mfa/allowSkip', {
+  20 |     data: {
+  21 |       username,
+  22 |       credentialTypeCode
+  23 |     },
+  24 |     headers: {
+  25 |       'Content-Type': 'application/json'
+  26 |     }
+  27 |   });
+  28 |
+  29 |   console.log('allowSkip response:', response.status(), await response.text());
+  30 |   expect(response.ok()).toBeTruthy();
+  31 |
+  32 |   // 4. Now logout and test logging in again — MFA should be skipped in the future
+  33 | });
+```

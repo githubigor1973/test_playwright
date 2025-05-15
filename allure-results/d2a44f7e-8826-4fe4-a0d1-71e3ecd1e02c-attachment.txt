@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745576313211.csv
+📄 CSV created at: generated/roster-1745576313211.csv
+✅ Clicked quote: Kemmer Group
+✅ Clicked quote row for: Kemmer Group
+✅ Proposal filled successfully

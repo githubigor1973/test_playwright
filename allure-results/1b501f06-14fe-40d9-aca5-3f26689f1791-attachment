@@ -1,0 +1,116 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: API test GET
+- Location: /Users/pejin/Documents/Playwright QA/tests/API.spec.ts:62:6
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "dolorem eum magni eos aperiam quia"
+Received: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+    at /Users/pejin/Documents/Playwright QA/tests/API.spec.ts:71:25
+```
+
+# Test source
+
+```ts
+   1 | /* import {test, expect} from '@playwright/test';
+   2 |
+   3 |
+   4 | test.only('API test GET', async ({ request }) => {
+   5 |     const response = await request.get('https://reqres.in/api/users/2');
+   6 |     //expect(response.ok()).toBeTruthy();
+   7 |     expect(response.status()).toBe(200);
+   8 |      const data = await response.json();
+   9 |     expect(data.data.first_name).toBe('Janet');
+  10 |     expect(data.data.last_name).toBe('Weaver');
+  11 |     expect(JSON.stringify(data)).toContain('Janet'); 
+  12 |     const text = await response.text();
+  13 |     expect(text).toContain('Janet');
+  14 |     console.log('✅ API response is correct!', await response.json());
+  15 |
+  16 |
+  17 | });
+  18 | test('API test POST', async ({ request }) => {
+  19 |     const response = await request.post('https://reqres.in/api/users',{
+  20 |         data: {
+  21 |             "name": "igor",
+  22 |             "surname": "pejin",
+  23 |             "city": "Osijek",
+  24 |             "job": "developer"
+  25 |         }
+  26 |     });
+  27 |     expect(response.ok()).toBeTruthy();
+  28 |     expect(response.status()).toBe(201);
+  29 |    
+  30 |     const text = await response.text();
+  31 |     expect(text).toContain('igor');
+  32 |     console.log('✅ API response is correct!', await response.json());
+  33 | });
+  34 |
+  35 | test('API test PUT', async ({ request }) => {
+  36 |     const response = await request.put('https://reqres.in/api/users/2',{
+  37 |         data: {
+  38 |             "name": "igor",
+  39 |             "surname": "pejin",
+  40 |             "city": "Osijek",
+  41 |             "job": "developer"
+  42 |         }
+  43 |     });
+  44 |     expect(response.ok()).toBeTruthy();
+  45 |     expect(response.status()).toBe(200);
+  46 |    
+  47 |     const text = await response.text();
+  48 |     expect(text).toContain('igor');
+  49 |     console.log('✅ API response is correct!', await response.json());
+  50 | });
+  51 |
+  52 | test('API test DELETE', async ({ request }) => {
+  53 |     const response = await request.delete('https://reqres.in/api/users/2');
+  54 |     expect(response.ok()).toBeTruthy();
+  55 |     expect(response.status()).toBe(204);
+  56 |    
+  57 |
+  58 | }); */
+  59 |
+  60 | import { test, expect } from '@playwright/test';
+  61 |
+  62 |  test('API test GET', async ({ request }) => {
+  63 |   const response = await request.get('https://jsonplaceholder.typicode.com/posts');
+  64 |   //expect(response.ok()).toBeTruthy();
+  65 |   await new Promise(resolve => setTimeout(resolve, 1000)); // wait 1 second
+  66 |
+  67 |   expect(response.status()).toBe(200);
+  68 |   const data = await response.json();  
+  69 |   const text = JSON.stringify(data);   
+  70 |   expect(text).toContain('magnam facilis autem');  
+> 71 |   expect(data[0].title).toBe('dolorem eum magni eos aperiam quia');         // ✅ Only once
+     |                         ^ Error: expect(received).toBe(expected) // Object.is equality
+  72 |
+  73 |   /* const data = await response.json();             // ✅ Only once
+  74 |   const text = JSON.stringify(data);              // ✅ Use stringified version to check text
+  75 |   expect(text).toContain('Janet');
+  76 |   expect(data.data.first_name).toBe('Janet');
+  77 |
+  78 |   console.log('✅ API response is correct!', data);  // ✅ Reuse parsed data */
+  79 | }); 
+  80 |
+  81 | /* test('API test POST', async ({ request}) => {
+  82 |     const response = await request.post('https://reqres.in/api/register', {
+  83 |         data: {
+  84 |             "email": "eve.holt@reqres.in",
+  85 |             "password": "pistol"
+  86 |         }
+  87 |     });
+  88 |     expect(response.status()).toBe(201);       
+  89 | }); */
+  90 |
+```

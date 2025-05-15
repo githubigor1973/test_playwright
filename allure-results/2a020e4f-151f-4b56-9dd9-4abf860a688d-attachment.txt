@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745662353742.csv
+📄 CSV created at: generated/roster-1745662353742.csv
+✅ Clicked quote: Kshlerin, Wolf and Mante
+✅ Clicked quote row for: Kshlerin, Wolf and Mante
+✅ Proposal filled successfully

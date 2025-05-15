@@ -1,0 +1,174 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Employer account creation and signing
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-43.spec.ts:187:5
+
+# Error details
+
+```
+Error: locator.fill: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for locator('input[name="SET_TAX_ID"]')
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-43.spec.ts:214:50
+```
+
+# Test source
+
+```ts
+  114 |   const zip = faker.location.zipCode('#####');
+  115 |
+  116 |   await page.locator('input[name="SET_TAX_ID"]').fill(fein);
+  117 |   await page.locator('input[name="SET_ADDRESS"]').fill(street);
+  118 |   await page.locator('input[name="SET_CITY"]').fill(city);
+  119 |   await page.getByRole('textbox', { name: 'XXXXX', exact: true }).fill(zip);
+  120 |   await page.getByRole('button', { name: 'Next step' }).click();
+  121 |
+  122 |   // Step 4: Additional Eligibility Config
+  123 |   await page.getByRole('listbox').filter({ hasText: 'Date of eligibility lossLast' }).click();
+  124 |   await page.getByRole('option', { name: 'Date of eligibility loss' }).locator('span').click();
+  125 |   await page.getByText('Yes, only unmarried children').click();
+  126 |   await page.getByText('Yes').nth(1).click();
+  127 |   await page.getByText('No').nth(2).click();
+  128 |   await page.getByRole('button', { name: 'Next step' }).click();
+  129 |
+  130 |   // Step 5: Sign
+  131 |   await page.getByRole('button', { name: 'Sign', exact: true }).click();
+  132 |   await page.getByText('By clicking Continue to sign').click();
+  133 |   await page.getByRole('button', { name: 'Continue to sign' }).click();    
+  134 |   
+  135 |
+  136 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/accountCreation/docusign');
+  137 |
+  138 |   // Step 6: Login again for DocuSign
+  139 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill('igor.pejin+ng1nkvyj@joinansel.com');
+  140 |   await page.locator('input[name="password"]').fill('Demo123456');
+  141 |   await page.getByRole('button', { name: 'Login' }).click();
+  142 |
+  143 |   // Step 7: DocuSign Signing Flow
+  144 |   const docusignFrame = page.frameLocator('iframe[title="ds"]');
+  145 |
+  146 |   await docusignFrame.getByText('I agree to use electronic').first().click();
+  147 |   await docusignFrame.getByRole('button', { name: 'Continue' }).click();
+  148 |   await docusignFrame.locator('#navigate-btn').click();
+  149 |
+  150 |   // Click label to focus
+  151 | await docusignFrame.locator('label').first().click();
+  152 |
+  153 | // Wait for signature buttons to be visible
+  154 | const signButtons = docusignFrame.getByRole('button', { name: /Required\s*-\s*Sign Here/i });
+  155 |
+  156 | // Click the first signature field
+  157 | await signButtons.nth(0).click();
+  158 |
+  159 | // Click "Adopt and Sign"
+  160 | await docusignFrame.getByRole('button', { name: 'Adopt and Sign' }).click();
+  161 |
+  162 | // Click the second signature field (after it appears)
+  163 | await page.locator('iframe[title="ds"]').contentFrame().getByRole('button', { name: 'Required - Sign Here' }).click();
+  164 |
+  165 | // Finish signing
+  166 | await docusignFrame.locator('#action-bar-btn-finish').click();
+  167 |
+  168 |
+  169 |
+  170 |
+  171 |
+  172 |
+  173 | }); */
+  174 |
+  175 | import { test, expect } from '@playwright/test';
+  176 | import { faker } from '@faker-js/faker';
+  177 | import fs from 'fs';
+  178 | import path from 'path';
+  179 |
+  180 | // Create a global variable to hold the contract number
+  181 | let contractNumber = '';
+  182 | const contractStoragePath = path.resolve(__dirname, './tmp/contract-number.json');
+  183 |
+  184 | // You can later read this in other files with:
+  185 | // const { contractNumber } = require('./tmp/contract-number.json');
+  186 |
+  187 | test('Employer account creation and signing', async ({ page }) => {
+  188 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/setPassword/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblR5cGUiOiJFbXBsb3llciIsImludml0ZUlkIjo1ODQ4LCJlbXBsb3llcklkIjpudWxsLCJlYVVzZXJJZCI6bnVsbH0.qmt9oM6egO_em9KyyFCIWbP83lIdjo_sHqDPRfAJYOo');
+  189 |
+  190 |   await page.locator('input[name="password"]').fill('Demo123456');
+  191 |   await page.locator('input[name="confirmPassword"]').fill('Demo123456');
+  192 |   await page.locator('input[name="agreeToTerms"]').check({ force: true });
+  193 |   await page.getByRole('button', { name: 'Continue' }).click();
+  194 |
+  195 |   await page.waitForTimeout(2000); 
+  196 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/login');
+  197 |
+  198 |   const email = 'igor.pejin+ng1nkvyj@joinansel.com';
+  199 |   const password = 'Demo123456';
+  200 |
+  201 |   await page.getByRole('textbox', { name: 'Enter your email' }).click();
+  202 |   await page.keyboard.type(email, { delay: 50 });
+  203 |   await page.locator('input[name="password"]').click();
+  204 |   await page.keyboard.type(password, { delay: 50 });
+  205 |   await page.locator('input[name="password"]').evaluate(e => e.blur());
+  206 |   await page.waitForTimeout(1000);
+  207 |   await page.getByRole('button', { name: 'Login' }).click({ force: true });
+  208 |
+  209 |   const fein = `${faker.number.int({ min: 10, max: 99 })}-${faker.number.int({ min: 1000000, max: 9999999 })}`;
+  210 |   const street = faker.location.streetAddress();
+  211 |   const city = faker.location.city();
+  212 |   const zip = faker.location.zipCode('#####');
+  213 |
+> 214 |   await page.locator('input[name="SET_TAX_ID"]').fill(fein);
+      |                                                  ^ Error: locator.fill: Test timeout of 30000ms exceeded.
+  215 |   await page.locator('input[name="SET_ADDRESS"]').fill(street);
+  216 |   await page.locator('input[name="SET_CITY"]').fill(city);
+  217 |   await page.getByRole('textbox', { name: 'XXXXX', exact: true }).fill(zip);
+  218 |   await page.getByRole('button', { name: 'Next step' }).click();
+  219 |
+  220 |   await page.getByRole('listbox').filter({ hasText: 'Date of eligibility lossLast' }).click();
+  221 |   await page.getByRole('option', { name: 'Date of eligibility loss' }).locator('span').click();
+  222 |   await page.getByText('Yes, only unmarried children').click();
+  223 |   await page.getByText('Yes').nth(1).click();
+  224 |   await page.getByText('No').nth(2).click();
+  225 |   await page.getByRole('button', { name: 'Next step' }).click();
+  226 |
+  227 |   await page.getByRole('button', { name: 'Sign', exact: true }).click();
+  228 |   await page.getByText('By clicking Continue to sign').click();
+  229 |   await page.getByRole('button', { name: 'Continue to sign' }).click();    
+  230 |
+  231 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/accountCreation/docusign');
+  232 |
+  233 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill(email);
+  234 |   await page.locator('input[name="password"]').fill(password);
+  235 |   await page.getByRole('button', { name: 'Login' }).click();
+  236 |
+  237 |   const docusignFrame = page.frameLocator('iframe[title="ds"]');
+  238 |   await docusignFrame.getByText('I agree to use electronic').first().click();
+  239 |   await docusignFrame.getByRole('button', { name: 'Continue' }).click();
+  240 |   await docusignFrame.locator('#navigate-btn').click();
+  241 |   await docusignFrame.locator('label').first().click();
+  242 |
+  243 |   const signButtons = docusignFrame.getByRole('button', { name: /Required\s*-\s*Sign Here/i });
+  244 |   await signButtons.nth(0).click();
+  245 |   await docusignFrame.getByRole('button', { name: 'Adopt and Sign' }).click();
+  246 |   await signButtons.nth(1).click();
+  247 |   await docusignFrame.locator('#action-bar-btn-finish').click();
+  248 |
+  249 |   await page.goto('https://brella--qa.sandbox.lightning.force.com/lightning/o/Contract/list?filterName=00B6g00000AFY47');
+  250 |   await page.waitForLoadState('domcontentloaded');
+  251 |   await page.waitForTimeout(4000);
+  252 |
+  253 |   const contractLink = await page.locator('a[data-refid="recordId"]').first();
+  254 |   contractNumber = await contractLink.innerText();
+  255 |
+  256 |   fs.mkdirSync(path.dirname(contractStoragePath), { recursive: true });
+  257 |   fs.writeFileSync(contractStoragePath, JSON.stringify({ contractNumber }, null, 2));
+  258 |
+  259 |   console.log(`✅ Contract number saved: ${contractNumber}`);
+  260 | });
+  261 |
+```

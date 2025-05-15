@@ -1,0 +1,78 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Login with MFA and call allowSkip using authToken header
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:15:5
+
+# Error details
+
+```
+Error: expect(received).toBeTruthy()
+
+Received: null
+    at /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:35:21
+```
+
+# Test source
+
+```ts
+   1 | /* import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |
+   5 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+   6 | await page.getByRole('textbox', { name: 'Username' }).fill('ipejin@brexus.com');
+   7 | await page.getByRole('textbox', { name: 'Password' }).fill('NupMOalbonJzvgl51nSnm!');
+   8 | await page.getByRole('button', { name: 'Login' }).click();
+   9 |
+  10 | });  */
+  11 |
+  12 |
+  13 | import { test, expect, request as playwrightRequest } from '@playwright/test';
+  14 |
+  15 | test('Login with MFA and call allowSkip using authToken header', async ({ page, browser }) => {
+  16 |   const username = 'ipejin@brexus.com';
+  17 |   const password = 'NupMOalbonJzvgl51nSnm!';
+  18 |   const credentialTypeCode = 'SUPPORT';
+  19 |
+  20 |   // Step 1: Login manually
+  21 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+  22 |   await page.getByRole('textbox', { name: 'Username' }).fill(username);
+  23 |   await page.getByRole('textbox', { name: 'Password' }).fill(password);
+  24 |   await page.getByRole('button', { name: 'Login' }).click();
+  25 |
+  26 |   console.log('👉 Enter MFA manually, then press "r" to resume');
+  27 |   await page.pause();
+  28 |
+  29 |   // Step 2: Grab authToken from localStorage or cookies
+  30 |   const authToken = await page.evaluate(() => {
+  31 |     return localStorage.getItem('authToken'); // Adjust if it's stored under another key
+  32 |   });
+  33 |
+  34 |   console.log('🔐 Extracted authToken:', authToken);
+> 35 |   expect(authToken).toBeTruthy();
+     |                     ^ Error: expect(received).toBeTruthy()
+  36 |
+  37 |   // Step 3: Use that token in allowSkip call
+  38 |   const apiRequestContext = await playwrightRequest.newContext({
+  39 |     baseURL: 'https://qa-ansel-platform.joinansel.com',
+  40 |     extraHTTPHeaders: {
+  41 |       'Content-Type': 'application/json',
+  42 |       'authToken': authToken!,
+  43 |     }
+  44 |   });
+  45 |
+  46 |   const response = await apiRequestContext.post('/support/api/v1/tools/mfa/allowSkip', {
+  47 |     data: { username, credentialTypeCode }
+  48 |   });
+  49 |
+  50 |   const body = await response.text();
+  51 |   console.log('✅ allowSkip response:', response.status(), body);
+  52 |   expect(response.ok()).toBeTruthy();
+  53 | });
+```

@@ -1,0 +1,44 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:3:5
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected)
+
+Locator: getByText('Enter your details below to')
+Expected string: "Enter your details below to access Ansel"
+Received string: "Enter your details below to access to Ansel"
+Call log:
+  - expect.toHaveText with timeout 5000ms
+  - waiting for getByText('Enter your details below to')
+    2 × locator resolved to <p class="small memberLoginContentText">Enter your details below to access to Ansel</p>
+      - unexpected value "Enter your details below to access to Ansel"
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:9:64
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |   await page.goto('https://qa-ansel-platform.joinansel.com/member/login');
+   5 |   await page.getByRole('textbox', { name: 'Enter your email' }).type('igor.pejin+ba280201037@joinansel.com', { delay: 30 });
+   6 |  //await page.type('input[placeholder="Enter your email"]', 'igor.pejin+ba280201037@joinansel.com', {delay: 100 });
+   7 |   await page.locator('input[name="password"]').type('Demo123456', { delay: 30 });
+   8 |   expect(await page.getByRole('heading', { name: 'Sign in to your Member Portal' })).toBeVisible();
+>  9 |   expect( await page.getByText('Enter your details below to')).toHaveText('Enter your details below to access Ansel');
+     |                                                                ^ Error: expect(locator).toHaveText(expected)
+  10 |   //await page.getByRole('button', { name: 'Sign in' }).click();
+  11 | });
+```

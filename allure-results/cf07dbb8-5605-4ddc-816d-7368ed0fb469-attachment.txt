@@ -1,0 +1,110 @@
+API data {
+  permissionList: [
+    {
+      id: 2,
+      endpoint: '/api/support/v1/triggerShoppingEmails',
+      description: 'Writes'
+    },
+    {
+      id: 4,
+      endpoint: '/api/support/v1/triggerDirectBillingMissingPaymentsEmails',
+      description: 'Writes'
+    },
+    {
+      id: 5,
+      endpoint: '/api/support/v1/createEmployerDocuments',
+      description: 'Writes'
+    },
+    {
+      id: 2,
+      endpoint: '/api/support/v1/triggerShoppingEmails',
+      description: 'Writes'
+    },
+    {
+      id: 3,
+      endpoint: '/api/support/v1/triggerBillingEmails',
+      description: 'Writes'
+    },
+    {
+      id: 6,
+      endpoint: '/api/support/v1/email/listEmails',
+      description: 'Get email list'
+    },
+    {
+      id: 7,
+      endpoint: '/api/support/v1/tools/logs/listLogs',
+      description: 'Get log list '
+    },
+    {
+      id: 8,
+      endpoint: '/api/support/v1/tools/logs/downloadLog',
+      description: 'Downloads Logs'
+    },
+    {
+      id: 9,
+      endpoint: '/api/support/v1/email/emailDetails',
+      description: 'Get email details'
+    },
+    {
+      id: 10,
+      endpoint: '/api/support/v1/admin/addPermissionToUser',
+      description: 'Writes'
+    },
+    {
+      id: 11,
+      endpoint: '/api/support/v1/admin/addEndpointToPermissions',
+      description: 'Writes'
+    },
+    {
+      id: 13,
+      endpoint: '/api/support/v1/admin/removePermissionToUser',
+      description: 'Writes'
+    },
+    {
+      id: 14,
+      endpoint: '/api/support/v1/admin/listUsersByIdOrEmail',
+      description: 'Writes'
+    },
+    {
+      id: 15,
+      endpoint: '/api/support/v1/admin/listEndpointsWithPermissions',
+      description: 'Writes'
+    },
+    {
+      id: 21,
+      endpoint: '/api/support/v1/sfoauth/generateConnectionLink',
+      description: 'Writes'
+    },
+    {
+      id: 22,
+      endpoint: '/api/support/v1/payments/failPayment',
+      description: 'Writes'
+    },
+    {
+      id: 23,
+      endpoint: '/api/support/v1/payments/autoChargeForceToday',
+      description: 'Writes'
+    },
+    {
+      id: 24,
+      endpoint: '/api/support/v1/admin/listApplicationsConfigs',
+      description: 'Lists'
+    },
+    {
+      id: 25,
+      endpoint: '/api/support/v1/admin/downloadApplicationConfig',
+      description: 'Download'
+    },
+    {
+      id: 26,
+      endpoint: '/api/support/v1/admin/uploadApplicationConfig',
+      description: 'Upload'
+    },
+    {
+      id: 27,
+      endpoint: '/api/support/v1/payments/updateCheckPdfFromLob',
+      description: 'Writes'
+    }
+  ]
+}
+Token: undefined

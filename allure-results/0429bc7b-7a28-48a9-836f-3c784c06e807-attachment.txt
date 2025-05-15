@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1744648661678.csv
+📄 CSV created at: generated/roster-1744648661678.csv
+✅ Clicked quote: Kovacek - Predovic
+✅ Clicked quote row for: Kovacek - Predovic
+✅ Proposal filled successfully

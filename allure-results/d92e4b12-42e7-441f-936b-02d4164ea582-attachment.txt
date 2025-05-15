@@ -1,0 +1,4 @@
+✅ CSV generated: generated/roster-1745820003635.csv
+📄 CSV created at: generated/roster-1745820003635.csv
+✅ Clicked quote: Jaskolski - Langworth
+✅ Clicked quote row for: Jaskolski - Langworth

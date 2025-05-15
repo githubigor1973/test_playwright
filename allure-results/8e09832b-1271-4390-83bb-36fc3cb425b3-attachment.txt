@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745846915541.csv
+📄 CSV created at: generated/roster-1745846915541.csv
+✅ Clicked quote: West LLC
+✅ Clicked quote row for: West LLC
+✅ Proposal filled successfully

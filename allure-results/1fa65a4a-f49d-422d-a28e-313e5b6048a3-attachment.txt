@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745754625415.csv
+📄 CSV created at: generated/roster-1745754625415.csv
+✅ Clicked quote: Botsford - Champlin
+✅ Clicked quote row for: Botsford - Champlin
+✅ Proposal filled successfully

@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745757963253.csv
+📄 CSV created at: generated/roster-1745757963253.csv
+✅ Clicked quote: Von, Hettinger and Herman
+✅ Clicked quote row for: Von, Hettinger and Herman
+✅ Proposal filled successfully

@@ -1,0 +1,231 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test with dynamic Employer name and State
+- Location: /Users/pejin/Documents/Playwright QA/tests/quote_proposal_ansel.spec.ts:13:5
+
+# Error details
+
+```
+Error: locator.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]
+Call log:
+  - waiting for getByRole('button', { name: 'Search' })
+    - locator resolved to <button id="275:0" type="button" aria-label="Search" data-aura-rendered-by="275:0" data-proxy-id="aura-pos-lib-1" class="slds-button slds-button_neutral search-button slds-truncate">…</button>
+    - fill("Johns Group")
+  - attempting fill action
+    - waiting for element to be visible, enabled and editable
+
+    at /Users/pejin/Documents/Playwright QA/tests/quote_proposal_ansel.spec.ts:108:52
+```
+
+# Test source
+
+```ts
+   8 | import {
+   9 |   getGroupAppLinkForUser,
+   10 |   getSetPasswordLinkForUser
+   11 | } from '../get-group-app-link';
+   12 |
+   13 | test('test with dynamic Employer name and State', async ({ page }) => {
+   14 |   test.setTimeout(120_000); // ⏱️ Increase timeout to 2 minutes
+   15 |
+   16 |   // ✅ Step 1: Generate CSV
+   17 |   const csvPath = await createCSV(10);
+   18 |   console.log(`📄 CSV created at: ${csvPath}`);
+   19 |
+   20 |   // ✅ Step 2: Login
+   21 |   await page.goto(config.urlPP);
+   22 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill(config.userNamePP);
+   23 |   await page.locator('input[name="password"]').fill(config.passWord);
+   24 |   await page.getByRole('button', { name: 'Login' }).click();
+   25 |
+   26 |   // ✅ Step 3: Flow
+   27 |   await page.getByRole('button', { name: 'Request a quote' }).click();
+   28 |   await page.locator('label').filter({ hasText: 'damian test6360' }).click();
+   29 |   await page.getByRole('button', { name: 'Next step' }).click();
+   30 |   await page.getByRole('button', { name: '+ Add employer' }).click();
+   31 |
+   32 |   // 🎲 Generate dynamic values
+   33 |   const allowedStates = ['Texas', 'California', 'Florida', 'Ohio', 'Georgia'];
+   34 |   const randomCompanyName = faker.company.name();
+   35 |   const randomCity = faker.location.city();
+   36 |   const randomState = faker.helpers.arrayElement(allowedStates);
+   37 |
+   38 |   // 🏢 Fill Employer details
+   39 |   await page.locator('input[name="companyName"]').fill(randomCompanyName);
+   40 |   await page.locator('input[name="sicCode"]').fill('1');
+   41 |   await page.getByText('- Rice').click();
+   42 |   await page.locator('input[name="city"]').fill(randomCity);
+   43 |   await page.getByRole('combobox').getByRole('textbox').fill(randomState);
+   44 |   await page.getByRole('option', { name: randomState }).click();
+   45 |   await page.locator('input[name="eligibleEmployees"]').fill('20');
+   46 |   await page.getByRole('button', { name: 'Next step' }).click();
+   47 |
+   48 |   // 📅 Date & Class
+   49 |   await page.getByRole('listbox').filter({ hasText: 'May 1, 2025Jun 1, 2025Jul 1,' }).click();
+   50 |   await page.getByRole('option', { name: 'Jun 1,' }).click();
+   51 |   await page.getByRole('textbox', { name: 'Ex. All full-time employees' }).fill('Class A');
+   52 |   await page.getByRole('button', { name: 'Next step' }).click();
+   53 |
+   54 |   // 📁 CSV Upload
+   55 |   await page.locator('input[type="file"]').setInputFiles(csvPath);
+   56 |   await page.getByRole('button', { name: 'Next step' }).click();
+   57 |
+   58 |   // 🔄 Map BirthDate
+   59 |   const listbox = page.getByRole('row', { name: /Date of birth/i }).getByRole('listbox');
+   60 |   await listbox.click();
+   61 |   for (let i = 0; i < 5; i++) {
+   62 |     await page.keyboard.press('ArrowDown');
+   63 |     await page.waitForTimeout(100);
+   64 |   }
+   65 |   await page.keyboard.press('Enter');
+   66 |   await page.getByRole('button', { name: 'Next step' }).click();
+   67 |   await page.getByRole('button', { name: 'Next step' }).click();
+   68 |
+   69 |   await page.getByText('Yes').click();
+   70 |   await page.getByText('Accident').click();
+   71 |   await page.getByText('Accident').click();
+   72 |   await page.getByRole('button', { name: 'Next step' }).click();
+   73 |
+   74 |   // 📨 Submit and send email
+   75 |   await page.getByRole('button', { name: 'Submit' }).click();
+   76 |   await page.getByRole('textbox', { name: 'Add another email address...' }).fill('igor.pejin+anselquotetest@joinansel.com');
+   77 |   await page.getByRole('button', { name: 'Send' }).click();
+   78 |
+   79 |   // 🔚 Back to dashboard and go to underwriting
+   80 |   await page.getByRole('button', { name: 'Back to quotes dashboard' }).click();
+   81 |   await page.goto(config.urlUnderWriting);
+   82 |
+   83 |   // 🔐 Salesforce login
+   84 |   await page.getByRole('textbox', { name: 'Username' }).fill(config.userNameSF);
+   85 |   await page.getByRole('textbox', { name: 'Password' }).fill(config.paswordSF);
+   86 |   await page.getByRole('button', { name: config.loginButtonName }).click();
+   87 |  await page.waitForTimeout(3000);
+   88 |   
+   89 |  /* const searchContainer = page.locator('.slds-global-header__item_search');
+   90 | await searchContainer.locator('button[aria-label="Search"]').click();
+   91 |
+   92 | const searchInput = searchContainer.locator('input[type="search"]');
+   93 |
+   94 |
+   95 | // Type slowly to simulate user input
+   96 | await searchInput.click(); // make sure it gets focus
+   97 | await searchInput.type(randomCompanyName, { delay: 100 }); */
+   98 |
+   99 | // Find the row link by visible text inside the Quote Name column
+  100 | /* const quoteLink = page.getByRole('link', { name: randomCompanyName }).first();
+  101 |
+  102 | await quoteLink.click();
+  103 | console.log(`✅ Clicked quote: ${randomCompanyName}`);
+  104 |
+  105 |
+  106 | await page.waitForTimeout(3000); // Allow dropdown results to load */
+  107 | await page.getByRole('button', { name: 'Search' }).click();
+> 108 | await page.getByRole('button', { name: 'Search' }).fill(randomCompanyName);
+      |                                                    ^ Error: locator.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]
+  109 | await page.getByRole('button', { name: 'Search' }).press('Enter');
+  110 | await page.waitForTimeout(3000); // Allow dropdown results to load
+  111 |   
+  112 |   
+  113 |   console.log(`✅ Clicked quote row for: ${randomCompanyName}`);
+  114 | await page.getByTitle('Approved').click();
+  115 | await page.locator('button').filter({ hasText: 'Mark as Current Status' }).click();
+  116 | await page.waitForTimeout(4000);
+  117 | await page.getByTitle('Issued').click();
+  118 |
+  119 | await page.locator('button').filter({ hasText: 'Mark as Current Status' }).click();
+  120 | await page.waitForTimeout(5000);
+  121 |
+  122 |
+  123 |   await page.getByRole('tab', { name: 'Details' }).click();
+  124 |   await page.waitForTimeout(1000);
+  125 |
+  126 |   const proposalLink = page.getByRole('link', { name: /https:\/\/qa-ansel-platform/ });
+  127 |   await proposalLink.scrollIntoViewIfNeeded();
+  128 |
+  129 |   const [newPage] = await Promise.all([
+  130 |     page.context().waitForEvent('page'),
+  131 |     proposalLink.click(),
+  132 |   ]);
+  133 |
+  134 |   //await newPage.waitForLoadState();
+  135 | await newPage.waitForTimeout(500);
+  136 |   await newPage.locator('text=Yes, I accept this proposal').scrollIntoViewIfNeeded();
+  137 |   await newPage.getByText('Yes, I accept this proposal').click();
+  138 |
+  139 |   const firstName = faker.person.firstName();
+  140 |   const lastName = faker.person.lastName();
+  141 |   const randomEmail = `igor.pejin+${faker.string.alphanumeric(8)}@joinansel.com`;
+  142 |   const ackFirstName = faker.person.firstName();
+  143 |   const ackLastName = faker.person.lastName();
+  144 |   const ackEmail = `igor.pejin+${faker.string.alphanumeric(8)}@joinansel.com`;
+  145 |
+  146 |   await newPage.locator('input[name="contactFirstName"]').fill(firstName);
+  147 |   await newPage.locator('input[name="contactLastName"]').fill(lastName);
+  148 |   await newPage.locator('input[name="contactEmail"]').fill(randomEmail);
+  149 |   await newPage.getByRole('textbox', { name: '(XXX) XXX-XXXX' }).fill('1234567890');
+  150 |   await newPage.getByText('Ansel enrollment platform').click();
+  151 |
+  152 |   // --- 🗓️ Pick Start Date ---
+  153 |   const today = format(new Date(), 'MM/dd/yyyy');
+  154 |   const threeWeeksLater = format(addDays(new Date(), 21), 'MM/dd/yyyy');
+  155 |   
+  156 |   // 2. Remove readonly and type for Start Date
+  157 |   await newPage.evaluate(() => {
+  158 |     // @ts-ignore
+  159 |     const input = document.querySelector('input[name="enrollmentStartDate"]');
+  160 |     if (input) input.removeAttribute('readonly');
+  161 |   });
+  162 |   await newPage.locator('input[name="enrollmentStartDate"]').fill(today);
+  163 |   
+  164 |   // 3. Remove readonly and type for End Date
+  165 |   // 3. Remove readonly and type for End Date
+  166 | await newPage.evaluate(() => {
+  167 |   // @ts-ignore
+  168 |   const input = document.querySelector('input[name="enrollmentEndDate"]');
+  169 |   if (input) input.removeAttribute('readonly');
+  170 | });
+  171 |   await newPage.locator('input[name="enrollmentEndDate"]').fill(threeWeeksLater);
+  172 |
+  173 |   // --- Acknowledgment ---
+  174 |   await newPage.locator('input[name="ackFirstName"]').fill(ackFirstName);
+  175 |   await newPage.locator('input[name="ackLastName"]').fill(ackLastName);
+  176 |   await newPage.locator('input[name="ackEmail"]').fill(ackEmail);
+  177 |
+  178 |   await newPage.getByText('By checking this box, I agree').click();
+  179 |
+  180 |   console.log('✅ Proposal filled successfully');
+  181 |
+  182 |   const acceptButton = newPage.locator('button:has-text("Accept"):not([disabled])');
+  183 |   await acceptButton.waitFor({ state: 'visible' });
+  184 |   
+  185 |   // Then click it
+  186 |   await acceptButton.click();
+  187 |
+  188 |
+  189 |
+  190 |   const setPasswordLink = await getSetPasswordLinkForUser(randomEmail);
+  191 | await page.goto(setPasswordLink);
+  192 |
+  193 | await page.locator('input[name="password"]').fill('Demo123456');
+  194 | await page.locator('input[name="confirmPassword"]').fill('Demo123456');
+  195 | await page.getByRole('button', { name: 'Submit' }).click();
+  196 |
+  197 |
+  198 |
+  199 |   /* // Constants
+  200 |   const email = randomEmail;
+  201 |   const password = 'Demo123456';
+  202 |
+  203 |   // Randomized values
+  204 |   const fein = `${faker.number.int({ min: 10, max: 99 })}-${faker.number.int({ min: 1000000, max: 9999999 })}`;
+  205 |   const street = faker.location.streetAddress();
+  206 |   const city = faker.location.city();
+  207 |   const zip = faker.location.zipCode('#####');
+  208 |
+```

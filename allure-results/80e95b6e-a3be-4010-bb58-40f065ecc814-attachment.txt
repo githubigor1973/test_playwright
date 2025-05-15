@@ -1,0 +1,2 @@
+👉 Enter MFA manually in the browser, then press "r" to resume
+🔐 Extracted authToken: null

@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745564825134.csv
+📄 CSV created at: generated/roster-1745564825134.csv
+✅ Clicked quote: Legros, Stanton and Kozey
+✅ Clicked quote row for: Legros, Stanton and Kozey
+✅ Proposal filled successfully

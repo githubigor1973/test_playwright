@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745573730054.csv
+📄 CSV created at: generated/roster-1745573730054.csv
+✅ Clicked quote: Howe - Gutkowski
+✅ Clicked quote row for: Howe - Gutkowski
+✅ Proposal filled successfully

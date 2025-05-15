@@ -1,0 +1,1 @@
+Extracted reset URL: https://qa-ansel-platform.joinansel.com/employer/setPassword/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblR5cGUiOiJFbXBsb3llciIsImludml0ZUlkIjo1ODgzLCJlbXBsb3llcklkIjpudWxsLCJlYVVzZXJJZCI6bnVsbH0.RGPi4fZ6RCxadBv02qwupa9zDTIbhv1bcosM4VKKOKQ

@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1746004634973.csv
+📄 CSV created at: generated/roster-1746004634973.csv
+✅ Clicked quote: Doyle, Torp and Koepp
+✅ Clicked quote row for: Doyle, Torp and Koepp
+✅ Proposal filled successfully

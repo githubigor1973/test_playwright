@@ -1,0 +1,168 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test with dynamic Employer name and State
+- Location: /Users/pejin/Documents/Playwright QA/tests/quote_proposal_ansel.spec.ts:10:5
+
+# Error details
+
+```
+Error: locator.fill: Test timeout of 120000ms exceeded.
+Call log:
+  - waiting for locator('input[name="SET_TAX_ID"]')
+
+    at /Users/pejin/Documents/Playwright QA/tests/quote_proposal_ansel.spec.ts:205:50
+```
+
+# Test source
+
+```ts
+  105 |   
+  106 |   
+  107 |   console.log(`✅ Clicked quote row for: ${randomCompanyName}`);
+  108 | await page.getByTitle('Approved').click();
+  109 | await page.locator('button').filter({ hasText: 'Mark as Current Status' }).click();
+  110 | await page.waitForTimeout(4000);
+  111 | await page.getByTitle('Issued').click();
+  112 |
+  113 | await page.locator('button').filter({ hasText: 'Mark as Current Status' }).click();
+  114 | await page.waitForTimeout(5000);
+  115 |
+  116 |
+  117 |   await page.getByRole('tab', { name: 'Details' }).click();
+  118 |   await page.waitForTimeout(1000);
+  119 |
+  120 |   const proposalLink = page.getByRole('link', { name: /https:\/\/qa-ansel-platform/ });
+  121 |   await proposalLink.scrollIntoViewIfNeeded();
+  122 |
+  123 |   const [newPage] = await Promise.all([
+  124 |     page.context().waitForEvent('page'),
+  125 |     proposalLink.click(),
+  126 |   ]);
+  127 |
+  128 |   //await newPage.waitForLoadState();
+  129 |
+  130 |   await newPage.locator('text=Yes, I accept this proposal').scrollIntoViewIfNeeded();
+  131 |   await newPage.getByText('Yes, I accept this proposal').click();
+  132 |
+  133 |   const firstName = faker.person.firstName();
+  134 |   const lastName = faker.person.lastName();
+  135 |   const randomEmail = `igor.pejin+${faker.string.alphanumeric(8)}@joinansel.com`;
+  136 |   const ackFirstName = faker.person.firstName();
+  137 |   const ackLastName = faker.person.lastName();
+  138 |   const ackEmail = `igor.pejin+${faker.string.alphanumeric(8)}@joinansel.com`;
+  139 |
+  140 |   await newPage.locator('input[name="contactFirstName"]').fill(firstName);
+  141 |   await newPage.locator('input[name="contactLastName"]').fill(lastName);
+  142 |   await newPage.locator('input[name="contactEmail"]').fill(randomEmail);
+  143 |   await newPage.getByRole('textbox', { name: '(XXX) XXX-XXXX' }).fill('1234567890');
+  144 |   await newPage.getByText('Ansel enrollment platform').click();
+  145 |
+  146 |   // --- 🗓️ Pick Start Date ---
+  147 |   const today = format(new Date(), 'MM/dd/yyyy');
+  148 |   const threeWeeksLater = format(addDays(new Date(), 21), 'MM/dd/yyyy');
+  149 |   
+  150 |   // 2. Remove readonly and type for Start Date
+  151 |   /* await newPage.evaluate(() => {
+  152 |     const input = document.querySelector('input[name="enrollmentStartDate"]');
+  153 |     if (input) input.removeAttribute('readonly');
+  154 |   });
+  155 |   await newPage.locator('input[name="enrollmentStartDate"]').fill(today);
+  156 |   
+  157 |   // 3. Remove readonly and type for End Date
+  158 |   await newPage.evaluate(() => {
+  159 |     const input = document.querySelector('input[name="enrollmentEndDate"]');
+  160 |     if (input) input.removeAttribute('readonly');
+  161 |   }); */
+  162 |   await newPage.locator('input[name="enrollmentEndDate"]').fill(threeWeeksLater);
+  163 |
+  164 |   // --- Acknowledgment ---
+  165 |   await newPage.locator('input[name="ackFirstName"]').fill(ackFirstName);
+  166 |   await newPage.locator('input[name="ackLastName"]').fill(ackLastName);
+  167 |   await newPage.locator('input[name="ackEmail"]').fill(ackEmail);
+  168 |
+  169 |   await newPage.getByText('By checking this box, I agree').click();
+  170 |
+  171 |   console.log('✅ Proposal filled successfully');
+  172 |
+  173 |   const acceptButton = newPage.locator('button:has-text("Accept"):not([disabled])');
+  174 |   await acceptButton.waitFor({ state: 'visible' });
+  175 |   
+  176 |   // Then click it
+  177 |   await acceptButton.click();
+  178 |
+  179 |
+  180 |   // Constants
+  181 |   const email = randomEmail;
+  182 |   const password = 'Demo123456';
+  183 |
+  184 |   // Randomized values
+  185 |   const fein = `${faker.number.int({ min: 10, max: 99 })}-${faker.number.int({ min: 1000000, max: 9999999 })}`;
+  186 |   const street = faker.location.streetAddress();
+  187 |   const city = faker.location.city();
+  188 |   const zip = faker.location.zipCode('#####');
+  189 |
+  190 |   // ✅ Go to tokenized login (set password)
+  191 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/setPassword/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblR5cGUiOiJFbXBsb3llciIsImludml0ZUlkIjo1ODE1LCJlbXBsb3llcklkIjpudWxsLCJlYVVzZXJJZCI6bnVsbH0.g06HINSmBlJZovHyCZljwFUkMZVc6nNBqGH573N8IZA');
+  192 |
+  193 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill(email);
+  194 |   await page.locator('input[name="password"]').fill(password);
+  195 |   await page.getByRole('button', { name: 'Login' }).click();
+  196 |
+  197 |   // ✅ Login again via UI
+  198 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/login');
+  199 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill(email);
+  200 |   await page.locator('input[name="password"]').fill(password);
+  201 |   await page.getByRole('button', { name: 'Login' }).click();
+  202 |   await page.waitForTimeout(4000);
+  203 |
+  204 |   // ✅ Fill random company info
+> 205 |   await page.locator('input[name="SET_TAX_ID"]').fill(fein);
+      |                                                  ^ Error: locator.fill: Test timeout of 120000ms exceeded.
+  206 |   await page.locator('input[name="SET_ADDRESS"]').fill(street);
+  207 |   await page.locator('input[name="SET_CITY"]').fill(city);
+  208 |   await page.getByRole('textbox', { name: 'XXXXX', exact: true }).fill(zip);
+  209 |
+  210 |   await page.getByRole('button', { name: 'Next step' }).click();
+  211 |
+  212 |   // ✅ Additional eligibility config
+  213 |   await page.getByRole('listbox').filter({ hasText: 'Date of eligibility lossLast' }).click();
+  214 |   await page.getByRole('option', { name: 'Date of eligibility loss' }).locator('span').click();
+  215 |   await page.getByText('Yes, only unmarried children').click();
+  216 |   await page.getByText('No', { exact: true }).click();
+  217 |   await page.getByRole('button', { name: 'Next step' }).click();
+  218 |
+  219 |   // ✅ Sign
+  220 |   await page.getByRole('button', { name: 'Sign', exact: true }).click();
+  221 |   await page.getByText('By clicking Continue to sign').click();
+  222 |   await page.getByRole('button', { name: 'Continue to sign' }).click();
+  223 |
+  224 |   // ✅ DocuSign handling
+  225 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/accountCreation/docusign');
+  226 |   const frame = await page.frameLocator('iframe[title="ds"]');
+  227 |
+  228 |   await frame.locator('span').filter({ hasText: 'I agree to use electronic' }).first().click();
+  229 |   await frame.getByRole('button', { name: 'Continue' }).click();
+  230 |   await frame.locator('#navigate-btn').click();
+  231 |   await frame.locator('#tab-form-element-f1202766-26ce-45b9-b53b-15e562651c66').click();
+  232 |   await frame.getByLabel('or Select a Signature').getByText('Valentine Upton-Marquardt').click();
+  233 |   await frame.getByRole('button', { name: 'Adopt and Sign' }).click();
+  234 |   await frame.getByRole('button', { name: 'Required - Sign Here' }).click();
+  235 |   await frame.locator('#action-bar-btn-finish').click();
+  236 |
+  237 |   // ✅ Done
+  238 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/accountCreation/success');
+  239 |
+  240 |   console.log('✅ Random data used:');
+  241 |   console.log(`FEIN: ${fein}`);
+  242 |   console.log(`Street: ${street}`);
+  243 |   console.log(`City: ${city}`);
+  244 |   console.log(`Zip: ${zip}`);
+  245 |
+  246 | });
+```

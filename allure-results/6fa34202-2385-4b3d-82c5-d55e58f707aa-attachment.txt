@@ -1,0 +1,4 @@
+✅ CSV generated: generated/roster-1746004301502.csv
+📄 CSV created at: generated/roster-1746004301502.csv
+✅ Clicked quote: Mueller and Sons
+✅ Clicked quote row for: Mueller and Sons

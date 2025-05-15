@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745782550050.csv
+📄 CSV created at: generated/roster-1745782550050.csv
+✅ Clicked quote: Borer LLC
+✅ Clicked quote row for: Borer LLC
+✅ Proposal filled successfully

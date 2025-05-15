@@ -1,0 +1,126 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: API test GET
+- Location: /Users/pejin/Documents/Playwright QA/tests/API.spec.ts:62:6
+
+# Error details
+
+```
+Error: expect(received).toContain(expected) // indexOf
+
+Expected value:  "102"
+Received object: {"competitions": [{"area": {"code": "AFR", "flag": null, "id": 2001, "name": "Africa"}, "code": "AC", "currentSeason": {"currentMatchday": 1, "endDate": "2026-01-18", "id": 2385, "startDate": "2025-12-21", "winner": null}, "emblem": "https://crests.football-data.org/ac.png", "id": 2176, "lastUpdated": "2024-01-13T11:34:43Z", "name": "Africa Cup", "numberOfAvailableSeasons": 2, "plan": "TIER_FOUR", "type": "CUP"}, {"area": {"code": "AFR", "flag": null, "id": 2001, "name": "Africa"}, "code": "ACL", "currentSeason": {"currentMatchday": null, "endDate": "2023-05-05", "id": 1559, "startDate": "2022-04-06", "winner": null}, "emblem": null, "id": 2166, "lastUpdated": "2023-02-26T12:57:33Z", "name": "AFC Champions League", "numberOfAvailableSeasons": 1, "plan": "TIER_FOUR", "type": "CUP"}, {"area": {"code": "AFR", "flag": null, "id": 2001, "name": "Africa"}, "code": "QCAF", "currentSeason": {"currentMatchday": 7, "endDate": "2025-10-13", "id": 1609, "startDate": "2023-11-15", "winner": null}, "emblem": null, "id": 2006, "lastUpdated": "2022-03-13T18:51:44Z", "name": "WC Qualification CAF", "numberOfAvailableSeasons": 3, "plan": "TIER_FOUR", "type": "CUP"}, {"area": {"code": "ARG", "flag": "https://crests.football-data.org/ar.svg", "id": 2011, "name": "Argentina"}, "code": "PBN", "currentSeason": {"currentMatchday": 17, "endDate": "2021-12-26", "id": 716, "startDate": "2021-03-13", "winner": null}, "emblem": null, "id": 2023, "lastUpdated": "2023-08-01T08:40:24Z", "name": "Primera B Nacional", "numberOfAvailableSeasons": 5, "plan": "TIER_FOUR", "type": "LEAGUE"}, {"area": {"code": "ARG", "flag": "https://crests.football-data.org/ar.svg", "id": 2011, "name": "Argentina"}, "code": "ASL", "currentSeason": {"currentMatchday": 16, "endDate": "2025-12-04", "id": 2369, "startDate": "2025-01-26", "winner": null}, "emblem": "https://crests.football-data.org/LPDF.svg", "id": 2024, "lastUpdated": "2024-09-13T16:34:03Z", "name": "Liga Profesional", "numberOfAvailableSeasons": 8, "plan": "TIER_TWO", "type": "LEAGUE"}, {"area": {"code": "ARG", "flag": "https://crests.football-data.org/ar.svg", "id": 2011, "name": "Argentina"}, "code": null, "currentSeason": {"currentMatchday": 13, "endDate": "2021-05-30", "id": 717, "startDate": "2021-02-12", "winner": null}, "emblem": null, "id": 2149, "lastUpdated": "2024-06-20T18:58:13Z", "name": "Copa Liga Profesional", "numberOfAvailableSeasons": 2, "plan": "TIER_FOUR", "type": "LEAGUE"}, {"area": {"code": "ARG", "flag": "https://crests.football-data.org/ar.svg", "id": 2011, "name": "Argentina"}, "code": null, "currentSeason": {"currentMatchday": null, "endDate": "2019-04-04", "id": 430, "startDate": "2019-04-04", "winner": null}, "emblem": null, "id": 2025, "lastUpdated": "2019-05-03T05:08:18Z", "name": "Supercopa Argentina", "numberOfAvailableSeasons": 2, "plan": "TIER_FOUR", "type": "SUPER_CUP"}, {"area": {"code": "ASI", "flag": null, "id": 2014, "name": "Asia"}, "code": "QAFC", "currentSeason": {"currentMatchday": 6, "endDate": "2024-06-11", "id": 1616, "startDate": "2023-10-12", "winner": null}, "emblem": null, "id": 2147, "lastUpdated": "2021-11-11T10:31:11Z", "name": "WC Qualification AFC", "numberOfAvailableSeasons": 3, "plan": "TIER_FOUR", "type": "CUP"}, {"area": {"code": "AUS", "flag": null, "id": 2015, "name": "Australia"}, "code": "AAL", "currentSeason": {"currentMatchday": 29, "endDate": "2025-05-04", "id": 2349, "startDate": "2024-10-18", "winner": null}, "emblem": "https://crests.football-data.org/a-league.png", "id": 2008, "lastUpdated": "2024-09-13T16:55:10Z", "name": "A League", "numberOfAvailableSeasons": 8, "plan": "TIER_TWO", "type": "LEAGUE"}, {"area": {"code": "AUS", "flag": null, "id": 2015, "name": "Australia"}, "code": null, "currentSeason": {"currentMatchday": null, "endDate": "2020-10-28", "id": 592, "startDate": "2020-02-19", "winner": null}, "emblem": null, "id": 2026, "lastUpdated": "2019-10-23T23:59:22Z", "name": "FFA Cup", "numberOfAvailableSeasons": 3, "plan": "TIER_FOUR", "type": "CUP"}, …], "count": 184, "filters": {}}
+    at /Users/pejin/Documents/Playwright QA/tests/API.spec.ts:71:16
+```
+
+# Test source
+
+```ts
+   1 | /* import {test, expect} from '@playwright/test';
+   2 |
+   3 |
+   4 | test.only('API test GET', async ({ request }) => {
+   5 |     const response = await request.get('https://reqres.in/api/users/2');
+   6 |     //expect(response.ok()).toBeTruthy();
+   7 |     expect(response.status()).toBe(200);
+   8 |      const data = await response.json();
+   9 |     expect(data.data.first_name).toBe('Janet');
+   10 |     expect(data.data.last_name).toBe('Weaver');
+   11 |     expect(JSON.stringify(data)).toContain('Janet'); 
+   12 |     const text = await response.text();
+   13 |     expect(text).toContain('Janet');
+   14 |     console.log('✅ API response is correct!', await response.json());
+   15 |
+   16 |
+   17 | });
+   18 | test('API test POST', async ({ request }) => {
+   19 |     const response = await request.post('https://reqres.in/api/users',{
+   20 |         data: {
+   21 |             "name": "igor",
+   22 |             "surname": "pejin",
+   23 |             "city": "Osijek",
+   24 |             "job": "developer"
+   25 |         }
+   26 |     });
+   27 |     expect(response.ok()).toBeTruthy();
+   28 |     expect(response.status()).toBe(201);
+   29 |    
+   30 |     const text = await response.text();
+   31 |     expect(text).toContain('igor');
+   32 |     console.log('✅ API response is correct!', await response.json());
+   33 | });
+   34 |
+   35 | test('API test PUT', async ({ request }) => {
+   36 |     const response = await request.put('https://reqres.in/api/users/2',{
+   37 |         data: {
+   38 |             "name": "igor",
+   39 |             "surname": "pejin",
+   40 |             "city": "Osijek",
+   41 |             "job": "developer"
+   42 |         }
+   43 |     });
+   44 |     expect(response.ok()).toBeTruthy();
+   45 |     expect(response.status()).toBe(200);
+   46 |    
+   47 |     const text = await response.text();
+   48 |     expect(text).toContain('igor');
+   49 |     console.log('✅ API response is correct!', await response.json());
+   50 | });
+   51 |
+   52 | test('API test DELETE', async ({ request }) => {
+   53 |     const response = await request.delete('https://reqres.in/api/users/2');
+   54 |     expect(response.ok()).toBeTruthy();
+   55 |     expect(response.status()).toBe(204);
+   56 |    
+   57 |
+   58 | }); */
+   59 |
+   60 | import { test, expect } from '@playwright/test';
+   61 |
+   62 |  test('API test GET', async ({ request }) => {
+   63 |   const response = await request.get('https://api.football-data.org/v4/competitions/');
+   64 |   //expect(response.ok()).toBeTruthy();
+   65 |   await new Promise(resolve => setTimeout(resolve, 1000)); // wait 1 second
+   66 |
+   67 |   expect(response.status()).toBe(200);
+   68 |    const data = await response.json();  
+   69 |   const text = JSON.stringify(data);   
+   70 |   expect(text).toContain('102');
+>  71 |   expect(data).toContain('102');
+      |                ^ Error: expect(received).toContain(expected) // indexOf
+   72 |   console.log('✅ API response is correct!', data); 
+   73 |   console.log('✅ API response is correct!', text); // ✅ Reuse parsed data
+   74 |   /*expect(text).toContain('magnam facilis autem'); 
+   75 |    
+   76 |   expect(data[2].userId).toBe(1)
+   77 |   expect(data[2].id).toBe(3);
+   78 |   expect(data[2].title).toBe('ea molestias quasi exercitationem repellat qui ipsa sit aut');
+   79 |   expect(data[2].body).toBe('et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut');
+   80 |   console.log('✅ API response is correct!', data); 
+   81 |   console.log('✅ API response is correct!', text); // ✅ Reuse parsed data */
+   82 | });
+   83 |   /* const data = await response.json();             // ✅ Only once
+   84 |   const text = JSON.stringify(data);              // ✅ Use stringified version to check text
+   85 |   expect(text).toContain('Janet');
+   86 |   expect(data.data.first_name).toBe('Janet');
+   87 |
+   88 |   console.log('✅ API response is correct!', data);  // ✅ Reuse parsed data */
+   89 |
+   90 |
+   91 | /* test('API test POST', async ({ request}) => {
+   92 |     const response = await request.post('https://reqres.in/api/register', {
+   93 |         data: {
+   94 |             "email": "eve.holt@reqres.in",
+   95 |             "password": "pistol"
+   96 |         }
+   97 |     });
+   98 |     expect(response.status()).toBe(201);       
+   99 | }); */
+  100 |
+```

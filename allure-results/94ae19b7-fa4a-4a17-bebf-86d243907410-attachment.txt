@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1746042270574.csv
+📄 CSV created at: generated/roster-1746042270574.csv
+✅ Clicked quote: Tremblay, Franey and Blanda
+✅ Clicked quote row for: Tremblay, Franey and Blanda
+✅ Proposal filled successfully

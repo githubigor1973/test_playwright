@@ -1,0 +1,69 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: login without MFA
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-49.spec.ts:18:5
+
+# Error details
+
+```
+Error: expect(received).toBeTruthy()
+
+Received: false
+    at /Users/pejin/Documents/Playwright QA/tests/test-49.spec.ts:33:25
+```
+
+# Test source
+
+```ts
+   1 |  // NupMOalbonJzvgl51nSnm
+   2 |  
+   3 | /*  import { test, expect } from '@playwright/test';
+   4 |
+   5 | test('test', async ({ page }) => {
+   6 |
+   7 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+   8 | await page.getByRole('textbox', { name: 'Username' }).fill('ipejin@brexus.com');
+   9 | await page.getByRole('textbox', { name: 'Password' }).fill('Demo123456!');
+  10 | await page.getByRole('button', { name: 'Login' }).click();
+  11 |
+  12 | }); 
+  13 |  */
+  14 |
+  15 |
+  16 | import { test, expect, request } from '@playwright/test';
+  17 |
+  18 | test('login without MFA', async ({ page, request }) => {
+  19 |   const username = 'ipejin@brexus.com';
+  20 |   const credentialTypeCode = 'SUPPORT';
+  21 |
+  22 |   // First, make API call to allow skipping MFA
+  23 |   const response = await request.post('https://qa-ansel-platform.joinansel.com/tools/mfa/allowSkip', {
+  24 |     data: {
+  25 |       username,
+  26 |       credentialTypeCode,
+  27 |     },
+  28 |     headers: {
+  29 |       'Content-Type': 'application/json'
+  30 |     }
+  31 |   });
+  32 |
+> 33 |   expect(response.ok()).toBeTruthy(); // check that API call succeeded
+     |                         ^ Error: expect(received).toBeTruthy()
+  34 |
+  35 |   // Then, proceed to normal login
+  36 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+  37 |   await page.getByRole('textbox', { name: 'Username' }).fill(username);
+  38 |   await page.getByRole('textbox', { name: 'Password' }).fill('NupMOalbonJzvgl51nSnm!');
+  39 |   await page.getByRole('button', { name: 'Login' }).click();
+  40 |
+  41 |   // Optional: Verify successful login
+  42 |   await expect(page).toHaveURL(/.*dashboard.*/); // or whatever page comes after login
+  43 | });
+  44 |
+```

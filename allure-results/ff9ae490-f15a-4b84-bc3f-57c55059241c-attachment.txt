@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745751848486.csv
+📄 CSV created at: generated/roster-1745751848486.csv
+✅ Clicked quote: Gerhold Inc
+✅ Clicked quote row for: Gerhold Inc
+✅ Proposal filled successfully

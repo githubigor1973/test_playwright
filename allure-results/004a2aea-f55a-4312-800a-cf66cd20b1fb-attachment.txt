@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745917796631.csv
+📄 CSV created at: generated/roster-1745917796631.csv
+✅ Clicked quote: Satterfield, Volkman and Balistreri
+✅ Clicked quote row for: Satterfield, Volkman and Balistreri
+✅ Proposal filled successfully

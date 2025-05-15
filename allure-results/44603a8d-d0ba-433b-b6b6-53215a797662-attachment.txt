@@ -1,0 +1,3 @@
+✅ CSV generated: generated/roster-1744648279298.csv
+📄 CSV created at: generated/roster-1744648279298.csv
+✅ Clicked quote: Schmidt, Heaney and Renner

@@ -1,0 +1,5 @@
+🚀 Starting test...
+✅ Logged into Salesforce
+📂 Opened Related tab
+🔗 Clicked CS- link
+✅ Opened first prospective record

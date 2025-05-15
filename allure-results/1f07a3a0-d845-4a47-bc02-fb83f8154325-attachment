@@ -1,0 +1,86 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Log in, extract authToken, call allowSkip, and re-login MFA-free
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:15:5
+
+# Error details
+
+```
+Error: expect(received).toBeTruthy()
+
+Received: null
+    at /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:33:21
+```
+
+# Test source
+
+```ts
+   1 | /* import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |
+   5 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+   6 | await page.getByRole('textbox', { name: 'Username' }).fill('ipejin@brexus.com');
+   7 | await page.getByRole('textbox', { name: 'Password' }).fill('NupMOalbonJzvgl51nSnm!');
+   8 | await page.getByRole('button', { name: 'Login' }).click();
+   9 |
+  10 | });  */
+  11 |
+  12 |
+  13 | import { test, expect, request as playwrightRequest } from '@playwright/test';
+  14 |
+  15 | test('Log in, extract authToken, call allowSkip, and re-login MFA-free', async ({ page, browser }) => {
+  16 |   const username = 'ipejin@brexus.com';
+  17 |   const password = 'NupMOalbonJzvgl51nSnm!';
+  18 |   const credentialTypeCode = 'SUPPORT';
+  19 |
+  20 |   // Step 1: Login via UI
+  21 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+  22 |   await page.getByRole('textbox', { name: 'Username' }).fill(username);
+  23 |   await page.getByRole('textbox', { name: 'Password' }).fill(password);
+  24 |   await page.getByRole('button', { name: 'Login' }).click();
+  25 |
+  26 |   // Step 2: Pause for MFA entry
+  27 |   console.log('👉 Enter MFA manually in the browser, then press "r" to resume');
+  28 |   await page.pause();
+  29 |
+  30 |   // Step 3: Extract authToken from JS context
+  31 |   const authToken = await page.evaluate(() => localStorage.getItem('authToken'));
+  32 |   console.log('🔐 Extracted authToken:', authToken);
+> 33 |   expect(authToken).toBeTruthy();
+     |                     ^ Error: expect(received).toBeTruthy()
+  34 |
+  35 |   // Step 4: Call allowSkip API with authToken header
+  36 |   const apiContext = await playwrightRequest.newContext({
+  37 |     baseURL: 'https://qa-ansel-platform.joinansel.com',
+  38 |     extraHTTPHeaders: {
+  39 |       'Content-Type': 'application/json',
+  40 |       'authToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwNDMsIm1pbnV0ZXNUaW1lb3V0Ijo2MCwiY3JlYXRpb25UaW1lIjoiMjAyNS0wNC0yOVQxOToxMTo0Ny42NTU2NDYwNFoiLCJjdXN0b21EYXRhIjp7fX0.mqeN5cuEkN1UofE1-mCIiJGyjWUDCdDxjesVP_5qHE0'
+  41 |     }
+  42 |   });
+  43 |
+  44 |   const response = await apiContext.post('/support/api/v1/tools/mfa/allowSkip', {
+  45 |     data: { username, credentialTypeCode }
+  46 |   });
+  47 |
+  48 |   console.log('✅ allowSkip response:', response.status(), await response.text());
+  49 |   expect(response.ok()).toBeTruthy();
+  50 |
+  51 |   // Step 5: Log out and re-login to test skip
+  52 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/logout');
+  53 |   await page.waitForURL('**/login');
+  54 |   await page.getByRole('textbox', { name: 'Username' }).fill(username);
+  55 |   await page.getByRole('textbox', { name: 'Password' }).fill(password);
+  56 |   await page.getByRole('button', { name: 'Login' }).click();
+  57 |
+  58 |   // Step 6: Pause to verify MFA is skipped
+  59 |   console.log('🧪 Re-login complete. MFA should be skipped now.');
+  60 |   await page.pause();
+  61 | });
+```

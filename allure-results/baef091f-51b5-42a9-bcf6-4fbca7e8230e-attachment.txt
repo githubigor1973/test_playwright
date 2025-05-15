@@ -1,0 +1,6 @@
+API data {
+  name: 'Igor',
+  job: 'Developer',
+  id: '738',
+  createdAt: '2025-05-05T05:41:39.039Z'
+}

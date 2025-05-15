@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745568066148.csv
+📄 CSV created at: generated/roster-1745568066148.csv
+✅ Clicked quote: Volkman - Weber
+✅ Clicked quote row for: Volkman - Weber
+✅ Proposal filled successfully

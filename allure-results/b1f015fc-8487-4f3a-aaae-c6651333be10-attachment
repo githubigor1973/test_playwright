@@ -1,0 +1,39 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:3:5
+
+# Error details
+
+```
+Error: locator.fill: Test ended.
+Call log:
+  - waiting for getByRole('textbox', { name: 'Enter your  password' })
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-51.spec.ts:10:69
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |   await page.goto('https://qa-ansel-platform.joinansel.com/member/login');
+   5 |  // await page.getByRole('textbox', { name: 'Enter your email' }).type('igor.pejin+ba280201037@joinansel.com', { delay: 30 });
+   6 |  await page.type('input[placeholder="Enter your email"]', 'igor.pejin+ba280201037@joinansel.com', {
+   7 |   delay: 100 // milliseconds between each keystroke
+   8 | });
+   9 |   //await page.locator('input[name="password"]').type('Demo123456', { delay: 30 });
+> 10 |   await page.getByRole('textbox', { name: 'Enter your  password' }).fill('Demo123456');
+     |                                                                     ^ Error: locator.fill: Test ended.
+  11 |   
+  12 |   //await page.getByRole('button', { name: 'Sign in' }).click();
+  13 | });
+```

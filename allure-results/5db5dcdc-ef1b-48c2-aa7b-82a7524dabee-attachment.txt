@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1746040729060.csv
+📄 CSV created at: generated/roster-1746040729060.csv
+✅ Clicked quote: Balistreri Inc
+✅ Clicked quote row for: Balistreri Inc
+✅ Proposal filled successfully

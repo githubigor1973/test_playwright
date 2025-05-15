@@ -1,0 +1,22 @@
+🚀 Starting test...
+✅ Logged into Salesforce
+📂 Opened Related tab
+🔗 Clicked CS- link
+✅ Opened first prospective record
+🔐 Extracted SSN: 648-90-5355
+🎂 Extracted and formatted DOB: 04/23/1969
+🎯 Clicked "Get The Link"
+🔗 Extracted shopping link: https://qa-ansel-platform.joinansel.com/enrollment/?token=yzkReyFmiqoLNQ3-FUTJK3rum5NGA7yEj95g0rhL3j_CMdPazmrIwJwxkcQjaFHN-k4RV8hRPsQQdUAJcjFoSPvMX-uJ7z8fSvcwXXv3NjTbQgSr6JpRI6HKpyipcPyX-bb0GeP9i-rYRdHyQ139oYh3852yfwKC_wnodzucIyAmasuAmQwWf8rZG449DrA6CHJ3eg7W8mxhzTJx3ad0yL90PqzZqhgN9tvLIIwHWffgxhz0irzipKEGYEwtY-VL_DThaG4cSj-IkuXTYN4NKM_HocoU1N_V86gpXS7fy5r3lQi1v1T4g5mXqybiWLNqg5mE-dELmDifuOEBvXAXvfUcYYjp8MtwNNvvzQx1LuNN7eZi-w1PqcVIGVmQsu7YPQYWYPUmCG_8wUq6DSz-nzpVp2tbA8vrhANSmkDJDN3azOqpRFFVwggn6hvDA6abesnYr-Kly9cNVb8NfCQCdNfAhESMxPJkWpMHdrJ8vDcc1c4iSA3-DwMKCDLfbUDaZOfQSQqDKzbcIilZAgc2cN1G6dwuF3KyQldwComNNYT4ohFrQk4ffxlvgtm62lnEfaIae2PEKJKX5CxvtgW3-N4f4q02_y5W_R2heCSVtvigQtyg-86Avuvqa3z-s-7rg0OKBLAKJKTY2sF4sBgrj-g3gAaQOs-Z1q6l446LkK1nL9P8mIXuEVwe2dP6p8LKrD315n3r7juyWJoQkw8-mdrbCaXWSYeyRVtWmQrE5hryv9JR6jdEl1sFsOG62yoByvI7v67Mp_UpIh9bKod9vNfL9BM0tTuzcMtLJ33vEjMrubX1oYcqOJjnlGRDo8vlh7AgpSO0k4BPvusxnp0KR_72y2Whk6S7y9Ih8V8I-ojvesb7SY4YhnMDKZYa-7Wtwh5g2O_5EDSV74S8D3y5cUuVnJN-hbJHqA6wHRQDy6-xZLGkSblxENdlGCnGtYOTQIBnDCUJfDRCRFkcF7qYQXjiPQ3Ckbwyb1Qk6tBpxe3SRdLIIGNEwyAczktG8cP71dVFA_HvN2LuCRHONHNf5i9unsqdypEbTiufME26B9eOBJdgiPo1uwIH8rEQr9zMsqpbubY_eICFu8YXPLp-7upZSWxKr5FN5QyZ789VV-hqjrEb2-jrVO2T64LHONANc9tV5bCJgWzpCCnIqKHto7hwPsZLKQ5X_3hCQHXUeJuQi8pldrgxVb9KY4U4BqXwlNzXmfLjLWOj6MMQXAknkYD_VJyj27JP9eaTc9zv2wd60gNM7LBNnjTvNQefuA_g_zygav1YEcjwm3MtGpW5KnU_RIPZj5E2Rfjc2MGr_MuQOACGNtl3FP-M9acl6zseRMPFKqLpI1IflMzplp9ejg==
+🆕 Navigated to shopping link in new tab
+🔐 Verification started
+🔓 Verification passed
+👪 Household questions
+➡️ Page 3 complete
+➡️ Page 4 complete
+➡️ Page 5 complete
+➡️ Page 6 complete
+➡️ Page 7 complete
+➡️ Page 8 complete
+➡️ Page 9 complete
+➡️ Page 10 complete
+➡️ Page 11 complete

@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1746039098114.csv
+📄 CSV created at: generated/roster-1746039098114.csv
+✅ Clicked quote: Considine, Kutch and Runolfsson
+✅ Clicked quote row for: Considine, Kutch and Runolfsson
+✅ Proposal filled successfully

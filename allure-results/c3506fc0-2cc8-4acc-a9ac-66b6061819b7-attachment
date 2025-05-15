@@ -1,0 +1,130 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Reqres API GET with API key
+- Location: /Users/pejin/Documents/Playwright QA/tests/API.spec.ts:168:5
+
+# Error details
+
+```
+Error: expect(received).toContain(expected) // indexOf
+
+Expected value:  "damianp+damianp@joinansel.com"
+Received object: {Symbol(async_id_symbol): 431, Symbol(trigger_async_id_symbol): 282, Symbol(kResourceStore): undefined}
+    at /Users/pejin/Documents/Playwright QA/tests/API.spec.ts:174:29
+```
+
+# Test source
+
+```ts
+   74 |             "email": "eve.holt@reqres.in",
+   75 |             "password": "pistol"
+   76 |         }
+   77 |     });
+   78 |     expect(response.status()).toBe(201);       
+   79 | }); */
+   80 |
+   81 | // Ensure only one import statement for test and expect
+   82 | import { test, expect } from '@playwright/test';
+   83 |
+   84 | /* test('API test PUT', async ({ request }) => {
+   85 |     const response = await request.put('https://jsonplaceholder.typicode.com/posts/1', {
+   86 |         data: {
+   87 |             "email": "enric@test.in",
+   88 |             "password": "Bioneuroemocion"
+   89 |         }
+   90 |     });
+   91 |     expect(response.status()).toBe(200);  
+   92 |     const text = await response.text();
+   93 |     expect(text).toContain('enric@test.in');
+   94 |     console.log('✅ API response is correct!', response.body());
+   95 | });
+   96 |  */
+   97 | /* test('API test GET', async ({ request }) => {
+   98 |     const response = await request.get('https://jsonplaceholder.typicode.com/posts', {
+   99 |     });
+  100 |     expect(response.status()).toBe(200);  
+  101 |     const data = await response.json();
+  102 |     expect(data).toBeDefined();
+  103 |     console.log('✅ API response is correct!', data);
+  104 |     
+  105 | }); */
+  106 |
+  107 | /* test('API test POST', async ({ request }) => {
+  108 |     const response = await request.post('https://jsonplaceholder.typicode.com/posts', {
+  109 |         data: {
+  110 |             "email": "enric@test.in",
+  111 |             "password": "Bioneuroemocion"
+  112 |         }
+  113 |     });
+  114 |     expect(response.status()).toBe(201);  
+  115 |     const text = await response.text();
+  116 |     expect(text).toContain('enric@test.in');
+  117 |     console.log('✅ API response is correct!', response.body());
+  118 | }); */
+  119 |
+  120 |
+  121 | test('API test DELETE', async ({ request }) => {
+  122 |     const response = await request.delete('https://jsonplaceholder.typicode.com/posts/1', {
+  123 |         
+  124 |     });
+  125 |     expect(response.status()).toBe(200);  
+  126 |     
+  127 | });
+  128 |
+  129 | test('test GET', async ({ request }) => {
+  130 |     const response = await request.get('https://qa-ansel-platform.joinansel.com/employer/login', {
+  131 |     });
+  132 |     expect(response.status()).toBe(200);  
+  133 |     
+  134 |     
+  135 | });
+  136 |
+  137 | test('Login should succeed with valid credentials', async ({ request }) => {
+  138 |     const response = await request.post('https://qa-ansel-platform.joinansel.com/employer/login', {
+  139 |       headers: {
+  140 |         'Content-Type': 'application/json'
+  141 |       },
+  142 |       data: {
+  143 |         email: 'damianp+damianp@joinansel.com',
+  144 |         password: 'Demo123456'
+  145 |       }
+  146 |     });
+  147 |   
+  148 |     const text = await response.text();
+  149 |     console.log('Raw response text:', text); // Will likely be HTML
+  150 |   
+  151 |     expect(response.status()).toBe(200);
+  152 |     expect(text).not.toContain('Invalid'); // Fallback content check
+  153 |   });
+  154 |
+  155 | test('API test PUT', async ({ request }) => {
+  156 |     const response = await request.put('https://qa-ansel-platform.joinansel.com/employer/login', {
+  157 |         data: {
+  158 |             "email": "damianp+damianp@joinansel.com",
+  159 |             "password": "Demo123456"
+  160 |         }
+  161 |     });
+  162 |     expect(response.status()).toBe(200);  
+  163 |     const text = await response.text();
+  164 |     //expect(text).toContain('damianp+damianp@joinansel.com');
+  165 |     console.log('✅ API response is correct!', response.body());
+  166 | });
+  167 |
+  168 | test('Reqres API GET with API key', async ({ request }) => {
+  169 |     const response = await request.get('https://qa-ansel-platform.joinansel.com/partner/quotes', {
+  170 |       
+  171 |     });
+  172 |   
+  173 |     expect(response.status()).toBe(200);
+> 174 |     expect(response.body()).toContain('damianp+damianp@joinansel.com');
+      |                             ^ Error: expect(received).toContain(expected) // indexOf
+  175 |     console.log('✅ API response is correct!', response.body());
+  176 |     
+  177 |   });
+```

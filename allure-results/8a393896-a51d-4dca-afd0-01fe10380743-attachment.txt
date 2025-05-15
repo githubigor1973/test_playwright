@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745845163206.csv
+📄 CSV created at: generated/roster-1745845163206.csv
+✅ Clicked quote: Cruickshank - Maggio
+✅ Clicked quote row for: Cruickshank - Maggio
+✅ Proposal filled successfully

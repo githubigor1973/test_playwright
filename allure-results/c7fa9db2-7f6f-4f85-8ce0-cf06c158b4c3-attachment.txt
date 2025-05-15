@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1746002906032.csv
+📄 CSV created at: generated/roster-1746002906032.csv
+✅ Clicked quote: Labadie - Leffler
+✅ Clicked quote row for: Labadie - Leffler
+✅ Proposal filled successfully

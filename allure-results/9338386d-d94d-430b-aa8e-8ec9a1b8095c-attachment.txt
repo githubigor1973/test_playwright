@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745611858158.csv
+📄 CSV created at: generated/roster-1745611858158.csv
+✅ Clicked quote: Hammes Inc
+✅ Clicked quote row for: Hammes Inc
+✅ Proposal filled successfully

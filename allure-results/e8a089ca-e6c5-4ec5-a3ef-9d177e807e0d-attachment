@@ -1,0 +1,83 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: login via API and skip MFA
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-49.spec.ts:18:5
+
+# Error details
+
+```
+Error: expect(received).toBeTruthy()
+
+Received: false
+    at /Users/pejin/Documents/Playwright QA/tests/test-49.spec.ts:33:30
+```
+
+# Test source
+
+```ts
+   1 |  // NupMOalbonJzvgl51nSnm!
+   2 |  
+   3 | /*  import { test, expect } from '@playwright/test';
+   4 |
+   5 | test('test', async ({ page }) => {
+   6 |
+   7 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+   8 | await page.getByRole('textbox', { name: 'Username' }).fill('ipejin@brexus.com');
+   9 | await page.getByRole('textbox', { name: 'Password' }).fill('Demo123456!');
+  10 | await page.getByRole('button', { name: 'Login' }).click();
+  11 |
+  12 | }); 
+  13 |  */
+  14 |
+  15 |
+  16 | import { test, expect } from '@playwright/test';
+  17 |
+  18 | test('login via API and skip MFA', async ({ page, context, request }) => {
+  19 |   const username = 'ipejin@brexus.com';
+  20 |   const password = 'NupMOalbonJzvgl51nSnm!';
+  21 |
+  22 |   // Step 1: Login via API
+  23 |   const loginResponse = await request.post('https://qa-ansel-platform.joinansel.com/api/support/v1/tools/mfa/allowSkip', {
+  24 |     data: {
+  25 |       username,
+  26 |       password
+  27 |     },
+  28 |     headers: {
+  29 |       'Content-Type': 'application/json'
+  30 |     }
+  31 |   });
+  32 |
+> 33 |   expect(loginResponse.ok()).toBeTruthy();
+     |                              ^ Error: expect(received).toBeTruthy()
+  34 |   const loginBody = await loginResponse.json();
+  35 |   console.log('Login response:', loginBody);
+  36 |
+  37 |   // Step 2: Call allowSkip API (use the same request context)
+  38 |   const mfaResponse = await request.post('https://qa-ansel-platform.joinansel.com/support/api/v1/tools/mfa/allowSkip', {
+  39 |     data: {
+  40 |       username,
+  41 |       credentialTypeCode: 'SUPPORT'
+  42 |     },
+  43 |     headers: {
+  44 |       'Content-Type': 'application/json'
+  45 |     }
+  46 |   });
+  47 |
+  48 |   expect(mfaResponse.ok()).toBeTruthy();
+  49 |   console.log('MFA skip response:', await mfaResponse.json());
+  50 |
+  51 |   // Step 3: Use browser to navigate (you still need to log in via UI unless cookies are injected)
+  52 |   await page.goto('https://qa-ansel-platform.joinansel.com/support/login');
+  53 |   await page.getByRole('textbox', { name: 'Username' }).fill(username);
+  54 |   await page.getByRole('textbox', { name: 'Password' }).fill(password);
+  55 |   await page.getByRole('button', { name: 'Login' }).click();
+  56 |
+  57 |   await expect(page).toHaveURL(/.*dashboard.*/);
+  58 | });
+```

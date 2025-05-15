@@ -1,0 +1,131 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Employer account creation and signing
+- Location: /Users/pejin/Documents/Playwright QA/tests/test-47.spec.ts:6:5
+
+# Error details
+
+```
+Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for locator('iframe[title="ds"]').contentFrame().getByText('I agree to use electronic').first()
+
+    at /Users/pejin/Documents/Playwright QA/tests/test-47.spec.ts:76:70
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { faker } from '@faker-js/faker';
+   3 | import fs from 'fs';
+   4 |
+   5 |
+   6 | test('Employer account creation and signing', async ({ page }) => {
+   7 |
+   8 |
+   9 |   // Step 1: Set Password
+   10 |       /*  await page.goto('https://qa-ansel-platform.joinansel.com/employer/setPassword/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblR5cGUiOiJFbXBsb3llciIsImludml0ZUlkIjo1ODQ3LCJlbXBsb3llcklkIjpudWxsLCJlYVVzZXJJZCI6bnVsbH0.GKz6iXIGHvT9av3Nf8_UfYINptgNK1FiK7Ud6vlHqLI');
+   11 |
+   12 |    await page.locator('input[name="password"]').fill('Demo123456');
+   13 |   await page.locator('input[name="confirmPassword"]').fill('Demo123456');
+   14 |   await page.locator('input[name="agreeToTerms"]').check({ force: true });
+   15 |   await page.getByRole('button', { name: 'Continue' }).click();
+   16 |
+   17 |   await page.waitForTimeout(2000); 
+   18 |
+   19 |    // Step 2: Login
+   20 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/login');
+   21 |
+   22 | const email = 'igor.pejin+ng1nkvyj@joinansel.com';
+   23 | const password = 'Demo123456';
+   24 |
+   25 | // Simulate real user typing
+   26 | await page.getByRole('textbox', { name: 'Enter your email' }).click();
+   27 | await page.keyboard.type(email, { delay: 50 });
+   28 |
+   29 | await page.locator('input[name="password"]').click();
+   30 | await page.keyboard.type(password, { delay: 50 });
+   31 |
+   32 | // Optional: blur to trigger validation
+   33 | await page.locator('input[name="password"]').evaluate(e => e.blur());
+   34 |
+   35 | await page.waitForTimeout(1000);
+   36 |
+   37 | // Force the click
+   38 | await page.getByRole('button', { name: 'Login' }).click({ force: true });
+   39 |
+   40 |   // Step 3: Fill Company Info
+   41 |   const fein = `${faker.number.int({ min: 10, max: 99 })}-${faker.number.int({ min: 1000000, max: 9999999 })}`;
+   42 |   const street = faker.location.streetAddress();
+   43 |   const city = faker.location.city();
+   44 |   const zip = faker.location.zipCode('#####');
+   45 |
+   46 |   await page.locator('input[name="SET_TAX_ID"]').fill(fein);
+   47 |   await page.locator('input[name="SET_ADDRESS"]').fill(street);
+   48 |   await page.locator('input[name="SET_CITY"]').fill(city);
+   49 |   await page.getByRole('textbox', { name: 'XXXXX', exact: true }).fill(zip);
+   50 |   await page.getByRole('button', { name: 'Next step' }).click();
+   51 |
+   52 |   // Step 4: Additional Eligibility Config
+   53 |   await page.getByRole('listbox').filter({ hasText: 'Date of eligibility lossLast' }).click();
+   54 |   await page.getByRole('option', { name: 'Date of eligibility loss' }).locator('span').click();
+   55 |   await page.getByText('Yes, only unmarried children').click();
+   56 |   await page.getByText('Yes').nth(1).click();
+   57 |   await page.getByText('No').nth(2).click();
+   58 |   await page.getByRole('button', { name: 'Next step' }).click();
+   59 |
+   60 |   // Step 5: Sign
+   61 |   await page.getByRole('button', { name: 'Sign', exact: true }).click();
+   62 |   await page.getByText('By clicking Continue to sign').click();
+   63 |   await page.getByRole('button', { name: 'Continue to sign' }).click();    
+   64 |    */
+   65 |
+   66 |   await page.goto('https://qa-ansel-platform.joinansel.com/employer/accountCreation/docusign');
+   67 |
+   68 |   // Step 6: Login again for DocuSign
+   69 |   await page.getByRole('textbox', { name: 'Enter your email' }).fill('igor.pejin+opw86fso@joinansel.comm');
+   70 |   await page.locator('input[name="password"]').fill('Demo123456');
+   71 |   await page.getByRole('button', { name: 'Login' }).click();
+   72 |
+   73 |   // Step 7: DocuSign Signing Flow
+   74 |   const docusignFrame = page.frameLocator('iframe[title="ds"]');
+   75 |
+>  76 |   await docusignFrame.getByText('I agree to use electronic').first().click();
+      |                                                                      ^ Error: locator.click: Test timeout of 30000ms exceeded.
+   77 |   await docusignFrame.getByRole('button', { name: 'Continue' }).click();
+   78 |   await docusignFrame.locator('#navigate-btn').click();
+   79 |
+   80 |   // Click label to focus
+   81 | await docusignFrame.locator('label').first().click();
+   82 |
+   83 | // Wait for signature buttons to be visible
+   84 | const signButtons = docusignFrame.getByRole('button', { name: /Required\s*-\s*Sign Here/i });
+   85 |
+   86 | // Click the first signature field
+   87 | await signButtons.nth(0).click();
+   88 |
+   89 | // Click "Adopt and Sign"
+   90 | await docusignFrame.getByRole('button', { name: 'Adopt and Sign' }).click();
+   91 |
+   92 | // Click the second signature field (after it appears)
+   93 | await page.locator('iframe[title="ds"]').contentFrame().getByRole('button', { name: 'Required - Sign Here' }).click();
+   94 | const { contractNumber } = JSON.parse(fs.readFileSync('./tmp/contract-number.json', 'utf-8'));
+   95 |
+   96 | console.log('📄 Reused contract number:', contractNumber);
+   97 | // Finish signing
+   98 | await docusignFrame.locator('#action-bar-btn-finish').click();
+   99 |
+  100 |
+  101 |
+  102 |
+  103 |
+  104 |
+  105 | }); 
+```

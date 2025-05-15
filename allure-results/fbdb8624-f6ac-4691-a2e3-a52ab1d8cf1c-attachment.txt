@@ -1,0 +1,3 @@
+✅ CSV generated: generated/roster-1744822547493.csv
+📄 CSV created at: generated/roster-1744822547493.csv
+✅ Clicked quote row for: Nikolaus, Kuhlman and Lueilwitz

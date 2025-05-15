@@ -1,0 +1,181 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Generate and follow Implementation Link with CSV upload
+- Location: /Users/pejin/Documents/Playwright QA/tests/implementation_form.spec.ts:111:5
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for getByRole('combobox').locator('i')
+
+    at /Users/pejin/Documents/Playwright QA/tests/implementation_form.spec.ts:148:49
+```
+
+# Test source
+
+```ts
+   48 |   await page.getByText('Monthly', { exact: true }).click();
+   49 |   await page.getByText('No', { exact: true }).click();
+   50 |
+   51 |   await page.locator('input[name="billingContactFirstName"]').fill(firstName);
+   52 |   await page.locator('input[name="billingContactLastName"]').fill(lastName);
+   53 |   await page.locator('input[name="billingContactEmail"]').fill(email);
+   54 |   await page.getByRole('textbox', { name: '(XXX) XXX-XXXX' }).fill('1234567890');
+   55 |
+   56 |   await page.getByText('Email').nth(3).click();
+   57 |   await page.getByText('Date of hire', { exact: true }).click();
+   58 |   await page.getByText('14').click(); // Adjust if needed
+   59 |
+   60 |   await page.locator('input[name="launchDate"]').fill(launchDate);
+   61 |   await page.locator('input[name="enrollmentStart"]').fill(enrollmentStart);
+   62 |   await page.locator('input[name="enrollmentEnd"]').fill(enrollmentEnd);
+   63 |
+   64 |   console.log('⬇️ Scrolling down to activate the Next Step button...');
+   65 |   await page.locator('div').filter({ hasText: 'Implementation setupfor Kub,' }).nth(3).scrollIntoViewIfNeeded();
+   66 |   await page.locator('div').filter({ hasText: 'Implementation setupfor Kub,' }).nth(3).click();
+   67 |
+   68 |   await page.getByRole('button', { name: 'Next Step' }).click();
+   69 |   console.log('👉 Proceeded to census upload step.');
+   70 |
+   71 |   console.log('📁 Generating census CSV...');
+   72 |   const csvPath = await createCSV(20);
+   73 |   console.log(`📄 CSV generated at: ${csvPath}`);
+   74 |
+   75 |   console.log('📤 Uploading census file...');
+   76 |   await page.locator('input[type="file"]').setInputFiles(csvPath);
+   77 |
+   78 |   console.log('✅ Census file uploaded. Proceeding to next step...');
+   79 |   await page.getByText('I verify that all employees').click();
+   80 |   await page.getByRole('button', { name: 'Next Step' }).click();
+   81 |
+   82 |   // Select First name
+   83 | await page.getByRole('row', { name: 'First name*' }).locator('i').click();
+   84 | await page.getByRole('option', { name: 'FirstName' }).click();
+   85 | console.log('✅ Mapped: First name -> FirstName');
+   86 |
+   87 | // Select Last name
+   88 | await page.getByRole('row', { name: 'Last name*' }).locator('i').click();
+   89 | await page.getByRole('option', { name: 'LastName' }).click();
+   90 | console.log('✅ Mapped: Last name -> LastName');
+   91 |
+   92 | // Select Date of birth
+   93 | await page.getByRole('row', { name: 'Date of birth*' }).locator('i').click();
+   94 | await page.getByRole('option', { name: 'BirthDate' }).click();
+   95 | console.log('✅ Mapped: Date of birth -> BirthDate');
+   96 |
+   97 | // Select Social Security Number
+   98 | await page.getByRole('row', { name: 'Social Security Number*' }).locator('i').click();
+   99 | await page.getByRole('option', { name: 'SSN' }).click();
+  100 | console.log('✅ Mapped: SSN -> SSN');
+  101 |  
+  102 |  await page.getByRole('button', { name: 'Submit' }).click();
+  103 |   console.log('🎉 Form submitted successfully.');
+  104 | }); */
+  105 |
+  106 | import { test, expect } from '@playwright/test';
+  107 | import { faker } from '@faker-js/faker';
+  108 | import { format, addDays } from 'date-fns';
+  109 | import createCSV from './utils/generate-csv';
+  110 |
+  111 | test('Generate and follow Implementation Link with CSV upload', async ({ page }) => {
+  112 |   console.log('🔐 Logging into Salesforce...');
+  113 |   await page.goto('https://brella--qa.sandbox.lightning.force.com/lightning/r/Contract/800QL00000JP9MvYAL/view');
+  114 |
+  115 |   await page.getByRole('textbox', { name: 'Username' }).fill('qa@joinansel.com.qa');
+  116 |   await page.getByRole('textbox', { name: 'Password' }).fill('q8xPmBoudN1W');
+  117 |   await page.getByRole('button', { name: 'Log In to Sandbox' }).click();
+  118 |
+  119 |   console.log('🧭 Navigating to contract page and clicking "Get The Link"...');
+  120 |   await page.getByRole('button', { name: 'Get The Link' }).click();
+  121 |
+  122 |   const textArea = page.locator('textarea');
+  123 |   await expect(async () => {
+  124 |     const value = await textArea.inputValue();
+  125 |     expect(value).toMatch(/^https:\/\/.+/);
+  126 |   }).toPass({ timeout: 10000 });
+  127 |
+  128 |   const link = await textArea.inputValue();
+  129 |   console.log(`✅ Implementation link extracted: ${link}`);
+  130 |
+  131 |   console.log('🌐 Opening implementation link...');
+  132 |   await page.goto(link, { waitUntil: 'domcontentloaded' });
+  133 |
+  134 |   const firstName = faker.person.firstName();
+  135 |   const lastName = faker.person.lastName();
+  136 |   const email = `igor.pejin+${faker.string.alphanumeric(8)}@joinansel.com`;
+  137 |
+  138 |   const tomorrow = addDays(new Date(), 1);
+  139 |   const launchDate = format(tomorrow, 'MM/dd/yyyy');
+  140 |   const enrollmentStart = format(tomorrow, 'MM/dd/yyyy');
+  141 |   const enrollmentEnd = format(addDays(tomorrow, 21), 'MM/dd/yyyy');
+  142 |
+  143 |   console.log(`👤 Name: ${firstName} ${lastName}`);
+  144 |   console.log(`📧 Email: ${email}`);
+  145 |   console.log(`📅 Dates → Launch: ${launchDate}, Start: ${enrollmentStart}, End: ${enrollmentEnd}`);
+  146 |
+  147 |   await page.getByText('Email').first().click();
+> 148 |   await page.getByRole('combobox').locator('i').click();
+      |                                                 ^ Error: locator.click: Target page, context or browser has been closed
+  149 |   await page.locator('input[name="eligible"]').fill('20');
+  150 |   await page.getByText('Monthly', { exact: true }).click();
+  151 |   await page.getByText('No', { exact: true }).click();
+  152 |
+  153 |   await page.locator('input[name="billingContactFirstName"]').fill(firstName);
+  154 |   await page.locator('input[name="billingContactLastName"]').fill(lastName);
+  155 |   await page.locator('input[name="billingContactEmail"]').fill(email);
+  156 |   await page.getByRole('textbox', { name: '(XXX) XXX-XXXX' }).fill('1234567890');
+  157 |
+  158 |   await page.getByText('Email').nth(3).click();
+  159 |   await page.getByText('Date of hire', { exact: true }).click();
+  160 |   await page.getByText('14').click();
+  161 |
+  162 |   await page.locator('input[name="launchDate"]').fill(launchDate);
+  163 |   await page.locator('input[name="enrollmentStart"]').fill(enrollmentStart);
+  164 |   await page.locator('input[name="enrollmentEnd"]').fill(enrollmentEnd);
+  165 |
+  166 |   console.log('⬇️ Scrolling down to activate Next Step...');
+  167 |   await page.locator('div').filter({ hasText: 'Implementation setupfor Kub,' }).nth(3).scrollIntoViewIfNeeded();
+  168 |   await page.locator('div').filter({ hasText: 'Implementation setupfor Kub,' }).nth(3).click();
+  169 |
+  170 |   await page.getByRole('button', { name: 'Next Step' }).click();
+  171 |   console.log('👉 Proceeded to census upload step.');
+  172 |
+  173 |   console.log('📁 Generating census CSV...');
+  174 |   const csvPath = await createCSV(20);
+  175 |   console.log(`📄 CSV created at: ${csvPath}`);
+  176 |
+  177 |   console.log('📤 Uploading census file...');
+  178 |   await page.locator('input[type="file"]').setInputFiles(csvPath);
+  179 |
+  180 |   console.log('✅ Census uploaded. Proceeding...');
+  181 |   await page.getByText('I verify that all employees').click();
+  182 |   await page.getByRole('button', { name: 'Next Step' }).click();
+  183 |
+  184 |   await page.getByRole('row', { name: 'First name*' }).locator('i').click();
+  185 |   await page.getByRole('option', { name: 'FirstName' }).click();
+  186 |   console.log('✅ Mapped: First name');
+  187 |
+  188 |   await page.getByRole('row', { name: 'Last name*' }).locator('i').click();
+  189 |   await page.getByRole('option', { name: 'LastName' }).click();
+  190 |   console.log('✅ Mapped: Last name');
+  191 |
+  192 |   await page.getByRole('row', { name: 'Date of birth*' }).locator('i').click();
+  193 |   await page.getByRole('option', { name: 'BirthDate' }).click();
+  194 |   console.log('✅ Mapped: DOB');
+  195 |
+  196 |   await page.getByRole('row', { name: 'Social Security Number*' }).locator('i').click();
+  197 |   await page.getByRole('option', { name: 'SSN' }).click();
+  198 |   console.log('✅ Mapped: SSN');
+  199 |
+  200 |   await page.getByRole('button', { name: 'Submit' }).click();
+  201 |   console.log('🎉 Form submitted!');
+  202 | });
+```

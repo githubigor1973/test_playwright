@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1744835857586.csv
+📄 CSV created at: generated/roster-1744835857586.csv
+✅ Clicked quote: Jacobson Group
+✅ Clicked quote row for: Jacobson Group
+✅ Proposal filled successfully

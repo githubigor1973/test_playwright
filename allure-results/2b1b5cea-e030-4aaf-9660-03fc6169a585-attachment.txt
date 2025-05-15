@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745592367710.csv
+📄 CSV created at: generated/roster-1745592367710.csv
+✅ Clicked quote: McClure, Schoen and McKenzie
+✅ Clicked quote row for: McClure, Schoen and McKenzie
+✅ Proposal filled successfully

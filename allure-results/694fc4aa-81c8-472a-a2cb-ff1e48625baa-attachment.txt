@@ -1,0 +1,4 @@
+✅ CSV generated: generated/roster-1745662179907.csv
+📄 CSV created at: generated/roster-1745662179907.csv
+✅ Clicked quote: Schroeder, Macejkovic and Ferry
+✅ Clicked quote row for: Schroeder, Macejkovic and Ferry

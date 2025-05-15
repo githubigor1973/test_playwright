@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1744837315784.csv
+📄 CSV created at: generated/roster-1744837315784.csv
+✅ Clicked quote: Feest, Crona and Rice
+✅ Clicked quote row for: Feest, Crona and Rice
+✅ Proposal filled successfully

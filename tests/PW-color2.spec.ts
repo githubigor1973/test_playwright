@@ -86,3 +86,5 @@ function convertRgbToHex(rgb: string): string {
   const rgbValues = rgb.replace(/[^\d,]/g, '').split(',').slice(0, 3);
   return '#' + rgbValues.map(x => (+x).toString(16).padStart(2, '0')).join('').toUpperCase();
 }
+
+// Removed the custom getComputedStyle function as it is not needed.

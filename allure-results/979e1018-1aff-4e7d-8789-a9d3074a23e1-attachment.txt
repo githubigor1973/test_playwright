@@ -1,0 +1,5 @@
+✅ CSV generated: generated/roster-1745576872183.csv
+📄 CSV created at: generated/roster-1745576872183.csv
+✅ Clicked quote: Ritchie Inc
+✅ Clicked quote row for: Ritchie Inc
+✅ Proposal filled successfully
