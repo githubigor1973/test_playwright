@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745755956830.csv
-📄 CSV created at: generated/roster-1745755956830.csv
-✅ Clicked quote: Schneider, Ebert and McKenzie
-✅ Clicked quote row for: Schneider, Ebert and McKenzie
-✅ Proposal filled successfully

@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1746042047726.csv
-📄 CSV created at: generated/roster-1746042047726.csv
-✅ Clicked quote: Jacobs and Sons
-✅ Clicked quote row for: Jacobs and Sons
-✅ Proposal filled successfully

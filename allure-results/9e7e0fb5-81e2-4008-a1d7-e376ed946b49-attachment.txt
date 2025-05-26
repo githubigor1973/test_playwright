@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745610958996.csv
-📄 CSV created at: generated/roster-1745610958996.csv
-✅ Clicked quote: Feest, Champlin and Morissette
-✅ Clicked quote row for: Feest, Champlin and Morissette
-✅ Proposal filled successfully

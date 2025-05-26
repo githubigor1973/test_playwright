@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745570536574.csv
-📄 CSV created at: generated/roster-1745570536574.csv
-✅ Clicked quote: Streich - Aufderhar
-✅ Clicked quote row for: Streich - Aufderhar
-✅ Proposal filled successfully

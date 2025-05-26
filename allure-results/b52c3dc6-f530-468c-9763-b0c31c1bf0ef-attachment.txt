@@ -1,7 +1,0 @@
-✅ API response is correct! {
-  name: 'igor',
-  surname: 'pejin',
-  city: 'Osijek',
-  job: 'developer',
-  updatedAt: '2025-03-30T14:31:21.606Z'
-}

@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1746003811314.csv
-📄 CSV created at: generated/roster-1746003811314.csv
-✅ Clicked quote: Abernathy, Kozey and Langosh
-✅ Clicked quote row for: Abernathy, Kozey and Langosh
-✅ Proposal filled successfully

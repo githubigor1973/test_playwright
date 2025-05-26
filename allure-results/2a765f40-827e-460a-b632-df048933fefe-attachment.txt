@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1746004796539.csv
-📄 CSV created at: generated/roster-1746004796539.csv
-✅ Clicked quote: Littel, Rempel and Hettinger
-✅ Clicked quote row for: Littel, Rempel and Hettinger
-✅ Proposal filled successfully

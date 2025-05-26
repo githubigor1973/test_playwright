@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745754901355.csv
-📄 CSV created at: generated/roster-1745754901355.csv
-✅ Clicked quote: Kshlerin, Botsford and Tremblay
-✅ Clicked quote row for: Kshlerin, Botsford and Tremblay
-✅ Proposal filled successfully

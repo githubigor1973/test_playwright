@@ -35,27 +35,29 @@ export default defineConfig({
     trace: 'on',
 
     /* Enable Allure results output */
-    screenshot: 'on',  // ✅ Capture screenshots for Allure
-    video: 'on',  // ✅ Record video only on test failures
+    screenshot: 'on',       // ✅ Capture screenshots
+    video: 'on',  
     headless: false,
+    trace: 'on',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
+      testMatch: '**/*.spec.ts',
       use: { ...devices['Desktop Chrome'] },
     },
 
-       {
-         name: 'firefox',
-         use: { ...devices['Desktop Firefox'] },
-       },
+  //   {
+  //     name: 'firefox',
+  //     use: { ...devices['Desktop Firefox'] },
+  //   },
 
-      {
-         name: 'webkit',
-         use: { ...devices['Desktop Safari'] },
-       },
+  //  {
+  //     name: 'webkit',
+  //     use: { ...devices['Desktop Safari'] },
+  //   },
 
     /* Test against mobile viewports. */
     // {

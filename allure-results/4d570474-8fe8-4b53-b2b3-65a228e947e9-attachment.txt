@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745755375911.csv
-📄 CSV created at: generated/roster-1745755375911.csv
-✅ Clicked quote: Davis Inc
-✅ Clicked quote row for: Davis Inc
-✅ Proposal filled successfully

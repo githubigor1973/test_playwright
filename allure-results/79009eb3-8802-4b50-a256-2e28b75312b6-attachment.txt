@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1745609712702.csv
-📄 CSV created at: generated/roster-1745609712702.csv
-✅ Clicked quote: Halvorson, Lemke and Yost
-✅ Clicked quote row for: Halvorson, Lemke and Yost

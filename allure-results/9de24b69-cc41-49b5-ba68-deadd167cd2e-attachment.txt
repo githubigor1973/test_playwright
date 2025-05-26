@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1744475745314.csv
-📄 CSV created at: generated/roster-1744475745314.csv
-✅ Clicked quote row for: Klein - Daniel
-✅ Proposal filled successfully

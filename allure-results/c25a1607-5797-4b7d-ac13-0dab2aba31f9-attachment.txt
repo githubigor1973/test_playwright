@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1745610815783.csv
-📄 CSV created at: generated/roster-1745610815783.csv
-✅ Clicked quote: Streich, Wilkinson and Altenwerth
-✅ Clicked quote row for: Streich, Wilkinson and Altenwerth

@@ -1,3 +1,0 @@
-✅ CSV generated: generated/roster-1744455203055.csv
-📄 CSV created at: generated/roster-1744455203055.csv
-✅ Clicked quote row for: Koepp and Sons

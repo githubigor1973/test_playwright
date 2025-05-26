@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745757066289.csv
-📄 CSV created at: generated/roster-1745757066289.csv
-✅ Clicked quote: Douglas - Dickinson
-✅ Clicked quote row for: Douglas - Dickinson
-✅ Proposal filled successfully

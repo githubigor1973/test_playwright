@@ -1,6 +1,0 @@
-API data {
-  name: 'Igor',
-  job: 'Developer',
-  id: '699',
-  createdAt: '2025-05-05T05:42:22.597Z'
-}

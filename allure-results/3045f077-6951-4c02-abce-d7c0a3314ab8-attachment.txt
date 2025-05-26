@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745571293404.csv
-📄 CSV created at: generated/roster-1745571293404.csv
-✅ Clicked quote: Hand - Franecki
-✅ Clicked quote row for: Hand - Franecki
-✅ Proposal filled successfully

@@ -12,6 +12,6 @@
     "resolveJsonModule": true,
     "outDir": "dist"
   },
-"include": ["tests", "utils", "global.d.ts", "get-group-app-link.ts"],
+"include": ["tests", "utils", "global.d.ts", "get-group-app-link.ts", "test-gmail.ts"],
   "files": ["global.d.ts"]
 }

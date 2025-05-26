@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745568770824.csv
-📄 CSV created at: generated/roster-1745568770824.csv
-✅ Clicked quote: Kirlin - Jones
-✅ Clicked quote row for: Kirlin - Jones
-✅ Proposal filled successfully

@@ -1,0 +1,45 @@
+❌ Failed to click Accept or Confirm: locator.waitFor: Test ended.
+Call log:
+  - waiting for getByRole('button', { name: 'Accept' }) to be visible
+
+    at /Users/pejin/Documents/copy/tests/test-1.spec.ts:394:18 {
+  name: 'Error',
+  [Symbol(step)]: {
+    stepId: 'pw:api@65',
+    location: {
+      file: '/Users/pejin/Documents/copy/tests/test-1.spec.ts',
+      line: 394,
+      column: 18
+    },
+    category: 'pw:api',
+    title: "locator.getByRole('button', { name: 'Accept' }).waitFor",
+    apiName: 'locator.waitFor',
+    params: {
+      selector: 'internal:role=button[name="Accept"i]',
+      strict: true,
+      omitReturnValue: true,
+      timeout: 2000
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@65'
+    },
+    complete: [Function: complete],
+    endWallTime: 1748184366878,
+    error: {
+      message: 'Error: locator.waitFor: Test ended.\n' +
+        'Call log:\n' +
+        "\x1B[2m  - waiting for getByRole('button', { name: 'Accept' }) to be visible\x1B[22m\n",
+      stack: 'Error: locator.waitFor: Test ended.\n' +
+        'Call log:\n' +
+        "\x1B[2m  - waiting for getByRole('button', { name: 'Accept' }) to be visible\x1B[22m\n" +
+        '\n' +
+        '    at /Users/pejin/Documents/copy/tests/test-1.spec.ts:394:18',
+      cause: undefined
+    }
+  }
+}

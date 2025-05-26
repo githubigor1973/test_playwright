@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745756908731.csv
-📄 CSV created at: generated/roster-1745756908731.csv
-✅ Clicked quote: Ryan, Parker and Baumbach
-✅ Clicked quote row for: Ryan, Parker and Baumbach
-✅ Proposal filled successfully

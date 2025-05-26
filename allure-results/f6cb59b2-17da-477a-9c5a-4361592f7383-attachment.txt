@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745735371404.csv
-📄 CSV created at: generated/roster-1745735371404.csv
-✅ Clicked quote: Cartwright and Sons
-✅ Clicked quote row for: Cartwright and Sons
-✅ Proposal filled successfully

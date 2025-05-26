@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1745610102062.csv
-📄 CSV created at: generated/roster-1745610102062.csv
-✅ Clicked quote: Gerhold, Bechtelar and Moore
-✅ Clicked quote row for: Gerhold, Bechtelar and Moore

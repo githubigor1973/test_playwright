@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1744832853403.csv
-📄 CSV created at: generated/roster-1744832853403.csv
-✅ Clicked quote: Smitham Group
-✅ Clicked quote row for: Smitham Group
-✅ Proposal filled successfully

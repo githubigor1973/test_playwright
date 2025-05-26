@@ -1,7 +1,0 @@
-🧭 Logged in and navigating to Contract page
-📂 Opened Related tab
-🔗 Clicked CS- link
-✅ Clicked on the first name link in the list
-🔐 SSN: 692-74-5197
-🎂 DOB: 04/08/1984
-🎯 Clicked "Get The Link"

@@ -1,3 +1,0 @@
-🎨 Found RGB color: rgb(9, 105, 218)
-🔷 Converted HEX color: #0969DA
-🔷 Converted HEX color: #0969DA

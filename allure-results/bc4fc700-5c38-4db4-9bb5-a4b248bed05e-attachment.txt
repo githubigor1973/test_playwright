@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745579240253.csv
-📄 CSV created at: generated/roster-1745579240253.csv
-✅ Clicked quote: Wisozk - McDermott
-✅ Clicked quote row for: Wisozk - McDermott
-✅ Proposal filled successfully

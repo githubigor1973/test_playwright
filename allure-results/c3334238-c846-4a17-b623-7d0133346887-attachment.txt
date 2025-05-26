@@ -1,7 +1,0 @@
-🧭 Logged in and navigating to Contract page
-📂 Opened Related tab
-🔗 Clicked CS- link
-✅ Clicked on the first name link in the list
-🔐 Extracted SSN: 692-74-5197
-🎂 Extracted DOB: 6/1/2025
-🧭 Clicked "Get The Link"

@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745569786645.csv
-📄 CSV created at: generated/roster-1745569786645.csv
-✅ Clicked quote: Wilderman Inc
-✅ Clicked quote row for: Wilderman Inc
-✅ Proposal filled successfully

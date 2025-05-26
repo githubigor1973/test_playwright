@@ -1,4 +1,0 @@
-❌ Field not found: Contact Owner
-❌ Field not found: Phone
-❌ Field not found: Home Phone
-❌ Field not found: Igor test

@@ -1,2 +1,0 @@
-🚀 Starting test: Verify Salesforce Contract Page
-✅ Contract details are correct.

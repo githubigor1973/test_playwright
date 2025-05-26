@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745566579631.csv
-📄 CSV created at: generated/roster-1745566579631.csv
-✅ Clicked quote: Howell, Schimmel and Rice
-✅ Clicked quote row for: Howell, Schimmel and Rice
-✅ Proposal filled successfully

@@ -1,6 +1,0 @@
-📸 Login screen
-📸 Username filled
-📸 Password filled
-📸 Post-login
-📸 Contacts tab
-📸 New contact

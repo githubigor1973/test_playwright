@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1746001250187.csv
-📄 CSV created at: generated/roster-1746001250187.csv
-✅ Clicked quote: O'Keefe - Nader
-✅ Clicked quote row for: O'Keefe - Nader
-✅ Proposal filled successfully

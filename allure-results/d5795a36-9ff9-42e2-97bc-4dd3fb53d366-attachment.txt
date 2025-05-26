@@ -1,2 +1,0 @@
-✅ CSV generated: generated/roster-1744451214385.csv
-📄 CSV created at: generated/roster-1744451214385.csv

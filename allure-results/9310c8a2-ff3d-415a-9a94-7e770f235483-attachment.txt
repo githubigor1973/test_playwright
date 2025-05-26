@@ -1,2 +1,0 @@
-Playwright word found in the title
-✅ Test passed

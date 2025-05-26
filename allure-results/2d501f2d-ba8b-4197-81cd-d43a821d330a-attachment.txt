@@ -1,6 +1,0 @@
-🎨 Color: Promise {
-  <pending>,
-  [Symbol(async_id_symbol)]: 984,
-  [Symbol(trigger_async_id_symbol)]: 983,
-  [Symbol(kResourceStore)]: undefined
-}

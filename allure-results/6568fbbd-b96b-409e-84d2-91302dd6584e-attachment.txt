@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1746004090900.csv
-📄 CSV created at: generated/roster-1746004090900.csv
-✅ Clicked quote: Zulauf - Spinka
-✅ Clicked quote row for: Zulauf - Spinka

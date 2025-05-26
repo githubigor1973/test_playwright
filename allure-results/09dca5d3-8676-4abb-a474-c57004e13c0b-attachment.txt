@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1746005540277.csv
-📄 CSV created at: generated/roster-1746005540277.csv
-✅ Clicked quote: Franey Inc
-✅ Clicked quote row for: Franey Inc
-✅ Proposal filled successfully

@@ -1,4 +1,0 @@
-✅ It is visible!
-✅ It is editable!
-✅ It is enabled!
-✅ It has "Search" placeholder!

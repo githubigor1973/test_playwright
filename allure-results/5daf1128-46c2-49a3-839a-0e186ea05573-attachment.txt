@@ -1,2 +1,0 @@
-API data { id: 4, token: 'QpwL5tke4Pnpja7X4' }
-Token: QpwL5tke4Pnpja7X4

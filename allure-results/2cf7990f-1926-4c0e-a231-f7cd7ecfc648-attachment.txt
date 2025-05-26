@@ -1,1 +1,0 @@
-✅ Clicked navigate button inside iframe.

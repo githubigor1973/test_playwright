@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745753101091.csv
-📄 CSV created at: generated/roster-1745753101091.csv
-✅ Clicked quote: Casper - Bins
-✅ Clicked quote row for: Casper - Bins
-✅ Proposal filled successfully

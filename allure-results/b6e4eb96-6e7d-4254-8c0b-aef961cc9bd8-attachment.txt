@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745755193274.csv
-📄 CSV created at: generated/roster-1745755193274.csv
-✅ Clicked quote: Hirthe - Aufderhar
-✅ Clicked quote row for: Hirthe - Aufderhar
-✅ Proposal filled successfully

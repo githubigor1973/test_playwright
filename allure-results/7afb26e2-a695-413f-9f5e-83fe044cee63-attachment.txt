@@ -1,6 +1,0 @@
-✅ API response is correct! Promise {
-  <pending>,
-  [Symbol(async_id_symbol)]: 1244,
-  [Symbol(trigger_async_id_symbol)]: 1125,
-  [Symbol(kResourceStore)]: undefined
-}

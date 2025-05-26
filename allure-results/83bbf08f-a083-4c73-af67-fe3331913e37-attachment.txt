@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1746003195471.csv
-📄 CSV created at: generated/roster-1746003195471.csv
-✅ Clicked quote: Hahn, Harber and Rippin
-✅ Clicked quote row for: Hahn, Harber and Rippin
-✅ Proposal filled successfully

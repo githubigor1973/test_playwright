@@ -1,8 +1,0 @@
-🚀 Starting test...
-✅ Logged into Salesforce
-📂 Opened Related tab
-🔗 Clicked CS- link
-✅ Opened first prospective record
-🎂 DOB: 04/08/1984 | 🔐 SSN: 692-74-5197
-🎯 Clicked "Get The Link"
-✅ Shopping link extracted: https://www.google.com/maps?q=Texas

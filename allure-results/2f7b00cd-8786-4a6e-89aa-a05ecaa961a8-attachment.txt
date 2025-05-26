@@ -1,4 +1,0 @@
-🎨 RGB: rgb(9, 105, 218)
-🔷 HEX: #0969DA
-🎯 Dot color: rgb(227, 76, 38)
-🔷 HEX: #E34C26

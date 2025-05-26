@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745754193271.csv
-📄 CSV created at: generated/roster-1745754193271.csv
-✅ Clicked quote: Legros - Renner
-✅ Clicked quote row for: Legros - Renner
-✅ Proposal filled successfully

@@ -1,0 +1,6 @@
+📤 Sending email with subject: Notice AutoMsg 1748195397839
+🌐 Navigating to Salesforce...
+⏳ Waiting for new email to appear...
+🔎 Using manual submission: SUB-45367
+✅ Found row for manual submission
+🔎 Using manual submission: SUB-45367

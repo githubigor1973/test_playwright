@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745567794893.csv
-📄 CSV created at: generated/roster-1745567794893.csv
-✅ Clicked quote: Harris, Lesch and Treutel
-✅ Clicked quote row for: Harris, Lesch and Treutel
-✅ Proposal filled successfully

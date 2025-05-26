@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1745564650413.csv
-📄 CSV created at: generated/roster-1745564650413.csv
-✅ Clicked quote: Anderson and Sons
-✅ Clicked quote row for: Anderson and Sons

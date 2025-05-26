@@ -1,0 +1,6 @@
+🔄 Attempting to send email...
+✅ Email sent successfully! {
+  id: '19706487e5a850cf',
+  threadId: '19706487e5a850cf',
+  labelIds: [ 'SENT' ]
+}

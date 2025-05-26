@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745577704199.csv
-📄 CSV created at: generated/roster-1745577704199.csv
-✅ Clicked quote: Jakubowski - Dibbert
-✅ Clicked quote row for: Jakubowski - Dibbert
-✅ Proposal filled successfully

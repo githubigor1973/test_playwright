@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745255417872.csv
-📄 CSV created at: generated/roster-1745255417872.csv
-✅ Clicked quote: Schimmel, Sporer and Welch
-✅ Clicked quote row for: Schimmel, Sporer and Welch
-✅ Proposal filled successfully

@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1744476358133.csv
-📄 CSV created at: generated/roster-1744476358133.csv
-✅ Clicked quote row for: Zieme and Sons
-✅ Proposal filled successfully

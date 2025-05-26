@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745567473621.csv
-📄 CSV created at: generated/roster-1745567473621.csv
-✅ Clicked quote: Koch LLC
-✅ Clicked quote row for: Koch LLC
-✅ Proposal filled successfully

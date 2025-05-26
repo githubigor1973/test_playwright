@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745760560214.csv
-📄 CSV created at: generated/roster-1745760560214.csv
-✅ Clicked quote: Halvorson Inc
-✅ Clicked quote row for: Halvorson Inc
-✅ Proposal filled successfully

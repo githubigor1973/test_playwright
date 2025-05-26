@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1746045729614.csv
-📄 CSV created at: generated/roster-1746045729614.csv
-✅ Clicked quote: Oberbrunner - Christiansen
-✅ Clicked quote row for: Oberbrunner - Christiansen
-✅ Proposal filled successfully

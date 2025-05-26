@@ -1,5 +1,0 @@
-✅ CSV generated: generated/roster-1745753730406.csv
-📄 CSV created at: generated/roster-1745753730406.csv
-✅ Clicked quote: Cartwright, Murray and Sauer
-✅ Clicked quote row for: Cartwright, Murray and Sauer
-✅ Proposal filled successfully

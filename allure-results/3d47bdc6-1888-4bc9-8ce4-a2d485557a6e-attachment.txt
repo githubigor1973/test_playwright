@@ -1,3 +1,0 @@
-🚀 Starting Test
-✅ Logged in to Salesforce.
-🔍 Looking for the Employee Shopping Link inside the <a> tag...

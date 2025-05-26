@@ -1,2 +1,0 @@
-🔐 Enter MFA in the browser, then press "r" in terminal to continue
-🔑 Extracted authToken: null

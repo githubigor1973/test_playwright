@@ -1,4 +1,0 @@
-✅ CSV generated: generated/roster-1745610548930.csv
-📄 CSV created at: generated/roster-1745610548930.csv
-✅ Clicked quote: Bechtelar Group
-✅ Clicked quote row for: Bechtelar Group
